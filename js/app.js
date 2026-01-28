@@ -3,6 +3,7 @@ const contenedor = document.getElementById("productos");
 let productos = [];
 
 fetch(CSV_URL)
+  console.log(filas);
   .then(res => res.text())
   .then(text => {
     const filas = text.split("\n").map(f => f.split(";"));
