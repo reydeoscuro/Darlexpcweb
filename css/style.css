@@ -1,81 +1,13 @@
 body {
-  margin: 0;
+  background: #111;
+  color: white;
   font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #222;
-}
-
-.topbar {
-  background: linear-gradient(90deg, #0d1b2a, #1b263b);
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-.topbar h1 {
-  margin: 0;
-  letter-spacing: 1px;
-}
-
-.categorias {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  padding: 15px;
-  background: #fff;
-  flex-wrap: wrap;
-}
-
-.categorias button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  background: #1f7aed;
-  color: #fff;
-  cursor: pointer;
-}
-
-.categorias button:hover {
-  background: #155dc2;
-}
-
-.productos {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 15px;
 }
 
 .card {
-  background: #fff;
-  border-radius: 10px;
+  background: #1e1e1e;
   padding: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,.08);
+  margin: 15px 0;
+  border-radius: 8px;
 }
 
-.card h3 {
-  margin-top: 0;
-}
-
-.card .precio {
-  font-size: 18px;
-  font-weight: bold;
-  color: #1f7aed;
-}
-
-.card a {
-  display: inline-block;
-  margin-top: 10px;
-  text-decoration: none;
-  background: #25d366;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 5px;
-}
-
-footer {
-  background: #0d1b2a;
-  color: #fff;
-  text-align: center;
-  padding: 15px;
-}
