@@ -1,16 +1,21 @@
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSfNt_q8m0bPyE8nKpt45_FYMMafduFw5jyjeYJBFdgoIpHSP72KDFaL1naDAoYuHZ5UNN2xkeOJSzR/pub?gid=687270074&single=true&output=csv";
-const contenedor = document.getElementById("productos");
+fetch("products.json")
+  .then(res => res.json())
+  .then(data => mostrarProductos(data))
+  .catch(err => console.error("Error cargando productos:", err));
 
-fetch(CSV_URL)
-  .then(res => res.text())
-  .then(text => {
-    contenedor.innerHTML = "<pre>" + text + "</pre>";
-  })
-  .catch(err => {
-    contenedor.innerHTML = "ERROR DE CONEXIÓN";
-    console.error(err);
+function mostrarProductos(productos) {
+  const contenedor = document.getElementById("productos");
+  contenedor.innerHTML = "";
+
+  productos.forEach(p => {
+    contenedor.innerHTML += `
+      <div class="card">
+        <h3>${p.nombre}</h3>
+        <p>$${p.precio}</p>
+        <a href="https://wa.me/593XXXXXXXXX" target="_blank">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    `;
   });
-
-}
-
 }
