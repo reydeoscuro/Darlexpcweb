@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>DarleXPC</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+  <header>
+    <h1>DarleXPC</h1>
+    <p>Tienda en línea de tecnología</p>
+  </header>
+
+  <nav>
+    <button onclick="filtrar('laptops')">Laptops</button>
+    <button onclick="filtrar('pcs')">PCs</button>
+    <button onclick="filtrar('componentes')">Componentes</button>
+    <button onclick="filtrar('accesorios')">Accesorios</button>
+  </nav>
+
+  <main id="productos"></main>
+
+  <!-- JS -->
+  <script src="./js/app.js"></script>
+</body>
+</html>
