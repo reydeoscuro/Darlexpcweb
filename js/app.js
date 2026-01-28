@@ -3,32 +3,37 @@ const contenedor = document.getElementById("productos");
 let productos = [];
 
 fetch(CSV_URL)
-  console.log(filas);
   .then(res => res.text())
   .then(text => {
-    const filas = text.split("\n").map(f => f.split(";"));
-    const encabezados = filas[0];
+    const filas = text.trim().split("\n").map(f => f.split(";"));
 
     filas.slice(1).forEach(fila => {
-      const producto = {
-        nombre: fila[0],
-        precio: fila[1],
-        categoria: fila[2],
-        stock: parseInt(fila[3]),
-        activo: fila[4]
-      };
+      const nombre = fila[0]?.trim();
+      const precio = fila[1]?.trim();
+      const categoria = fila[2]?.trim().toLowerCase();
+      const stock = parseInt(fila[3]) || 0;
+      const activo = fila[4]?.trim().toUpperCase();
 
-      if (producto.activo === "SI" && producto.stock > 0) {
-        productos.push(producto);
+      // Mostrar SOLO si cumple lógica mínima
+      if (nombre && precio && categoria && activo !== "NO" && stock > 0) {
+        productos.push({ nombre, precio, categoria, stock });
       }
     });
 
-    // Mostrar laptops por defecto
-    mostrar(productos.filter(p => p.categoria === "laptops"));
+    mostrar(productos);
+  })
+  .catch(err => {
+    contenedor.innerHTML = "❌ Error cargando productos";
+    console.error(err);
   });
 
 function mostrar(lista) {
   contenedor.innerHTML = "";
+  if (lista.length === 0) {
+    contenedor.innerHTML = "<p>No hay productos disponibles</p>";
+    return;
+  }
+
   lista.forEach(p => {
     contenedor.innerHTML += `
       <div class="card">
@@ -44,4 +49,6 @@ function mostrar(lista) {
 
 function filtrar(cat) {
   mostrar(productos.filter(p => p.categoria === cat));
+}
+
 }
