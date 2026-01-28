@@ -1,4 +1,4 @@
-const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSfNt_q8m0bPyE8nKpt45_FYMMafduFw5jyjeYJBFdgoIpHSP72KDFaL1naDAoYuHZ5UNN2xkeOJSzR/pubhtml";
+const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSfNt_q8m0bPyE8nKpt45_FYMMafduFw5jyjeYJBFdgoIpHSP72KDFaL1naDAoYuHZ5UNN2xkeOJSzR/pub?gid=687270074&single=true&output=csv";
 const contenedor = document.getElementById("productos");
 let productos = [];
 
