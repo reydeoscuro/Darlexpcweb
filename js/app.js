@@ -5,7 +5,7 @@ let productos = [];
 fetch(CSV_URL)
   .then(res => res.text())
   .then(text => {
-    const filas = text.split("\n").map(f => f.split(","));
+    const filas = text.split("\n").map(f => f.split(";"));
     const encabezados = filas[0];
 
     filas.slice(1).forEach(fila => {
