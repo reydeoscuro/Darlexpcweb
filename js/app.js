@@ -1,4 +1,6 @@
 const contenedor = document.getElementById("productos");
+const botones = document.querySelectorAll("nav button");
+
 let productos = [];
 
 // Cargar productos
@@ -25,10 +27,12 @@ function mostrar(lista) {
   });
 }
 
-// 🔹 FUNCIÓN QUE USAN LOS BOTONES
-function filtrar(cat) {
-  mostrar(productos.filter(p => p.categoria === cat));
-}
+// Filtros (SIN scope issues)
+botones.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const cat = btn.dataset.cat;
+    const filtrados = productos.filter(p => p.categoria === cat);
+    mostrar(filtrados);
+  });
+});
 
-// 👉 EXPONERLA AL HTML
-window.filtrar = filtrar;
