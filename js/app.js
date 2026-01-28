@@ -1,4 +1,4 @@
-fetch("products.json")
+fetch("/Darlexpcweb/products.json")
   .then(res => res.json())
   .then(data => mostrarProductos(data))
   .catch(err => console.error("Error cargando productos:", err));
