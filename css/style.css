@@ -4,64 +4,119 @@
 
 body {
   margin: 0;
-  font-family: system-ui, Arial, sans-serif;
-  background: #0b0f1a;
-  color: #e5e7eb;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f1f5f9; /* fondo claro */
+  color: #111827;
 }
 
 /* HEADER */
 .top {
-  background: linear-gradient(90deg, #020617, #020617);
-  padding: 20px;
-  border-bottom: 1px solid #1e293b;
+  background: #ffffff;
+  padding: 20px 30px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .logo h1 {
   margin: 0;
   font-size: 28px;
-  color: #38bdf8;
+  color: #0f172a;
 }
 
 .logo span {
   font-size: 14px;
-  color: #94a3b8;
+  color: #6b7280;
 }
 
 /* MENU */
 .menu {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   padding: 15px;
   justify-content: center;
-  background: #020617;
-  border-bottom: 1px solid #1e293b;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .menu button {
-  background: #111827;
-  color: #e5e7eb;
-  border: 1px solid #1e293b;
-  padding: 10px 16px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .menu button:hover {
-  background: #2563eb;
+  background: #1d4ed8;
 }
 
 /* CONTENEDOR */
 .contenedor {
   padding: 30px;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
 }
 
-/* PRODUCTOS */
+/* PRODUCTOS GRID */
 #productos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
 }
 
-.ca
+/* CARD */
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.card p {
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #16a34a;
+}
+
+/* BOTON */
+.card a {
+  margin-top: auto;
+  text-align: center;
+  background: #22c55e;
+  color: #ffffff;
+  padding: 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card a:hover {
+  background: #16a34a;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #6b7280;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
