@@ -16,7 +16,7 @@ fetch(URL)
           <h3>${p.NOMBRE}</h3>
           <p>Precio: $${p.PRECIO}</p>
           <p>Stock: ${p.STOCK}</p>
-          <img src="images/${p["IMAGEN "]}" width="150">
+          <img src="${p["IMAGEN "]}" width="150">
         </div>
         <hr>
       `;
