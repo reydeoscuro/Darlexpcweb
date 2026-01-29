@@ -1,38 +1,24 @@
-const contenedor = document.getElementById("productos");
-const botones = document.querySelectorAll("nav button");
+const URL = "https://sheetdb.io/api/v1/abcd1234";
 
-let productos = [];
-
-// Cargar productos
-fetch("/Darlexpcweb/products.json")
+fetch(URL)
   .then(res => res.json())
   .then(data => {
-    productos = data;
-    mostrar(productos);
-  });
+    const contenedor = document.getElementById("productos");
 
-// Mostrar productos
-function mostrar(lista) {
-  contenedor.innerHTML = "";
-  lista.forEach(p => {
-    contenedor.innerHTML += `
-      <div class="card">
-        <h3>${p.nombre}</h3>
-        <p>$${p.precio}</p>
-        <a href="https://wa.me/593XXXXXXXXX?text=Hola,%20estoy%20interesado%20en%20${encodeURIComponent(p.nombre)}" target="_blank">
-          Consultar por WhatsApp
-        </a>
-      </div>
-    `;
+    data.forEach(p => {
+      if (p.activo === "TRUE") {
+        contenedor.innerHTML += `
+          <div class="card">
+            <img src="images/${p.imagen}" width="150">
+            <h3>${p.nombre}</h3>
+            <p>$${p.precio}</p>
+            <p>Stock: ${p.stock}</p>
+            <a href="https://wa.me/593XXXXXXXXX?text=Hola,%20me%20interesa%20${p.nombre}" target="_blank">
+              Comprar
+            </a>
+          </div>
+        `;
+      }
+    });
   });
-}
-
-// Filtros (SIN scope issues)
-botones.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const cat = btn.dataset.cat;
-    const filtrados = productos.filter(p => p.categoria === cat);
-    mostrar(filtrados);
-  });
-});
 
