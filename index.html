@@ -4,30 +4,35 @@
   <meta charset="UTF-8" />
   <title>DarleXPC</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./css/style.css" />
-   <!-- jS -->
-  <div id="productos"></div>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
+
 <body>
 
-  <header>
-    <h1>DarleXPC</h1>
-    <p>Tienda en línea de tecnología</p>
+  <header class="top">
+    <div class="logo">
+      <h1>DarleXPC</h1>
+      <span>Tienda en línea de tecnología</span>
+    </div>
   </header>
 
-<nav>
-  <button data-cat="laptops">Laptops</button>
-  <button data-cat="pcs">PCs</button>
-  <button data-cat="componentes">Componentes</button>
-  <button data-cat="accesorios">Accesorios</button>
-</nav>
+  <nav class="menu">
+    <button>Laptops</button>
+    <button>PCs</button>
+    <button>Componentes</button>
+    <button>Accesorios</button>
+  </nav>
 
-<main id="productos"></main>
+  <main class="contenedor">
+    <section id="productos"></section>
+  </main>
 
-<script src="./js/app.js"></script>
+  <footer class="footer">
+    © 2026 DarleXPC — Tecnología confiable
+  </footer>
+
+  <script src="./js/app.js"></script>
 
 </body>
 </html>
