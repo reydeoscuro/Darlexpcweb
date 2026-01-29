@@ -5,16 +5,18 @@ const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
 fetch(URL)
   .then(response => response.json())
   .then(productos => {
-    console.log(productos);
+    console.log(productos); // verificación
+
     const contenedor = document.getElementById("productos");
-    contenedor.innerHTML = ""; // limpia
+    contenedor.innerHTML = "";
 
     productos.forEach(p => {
       contenedor.innerHTML += `
-        <div>
-          <h3>${p.nombre}</h3>
-          <p>Precio: $${p.precio}</p>
-          <p>Stock: ${p.stock}</p>
+        <div class="card">
+          <h3>${p.NOMBRE}</h3>
+          <p>Precio: $${p.PRECIO}</p>
+          <p>Stock: ${p.STOCK}</p>
+          <img src="images/${p["IMAGEN "]}" width="150">
         </div>
         <hr>
       `;
