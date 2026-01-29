@@ -15,7 +15,13 @@ body {
   padding: 20px 30px;
   border-bottom: 1px solid #e5e7eb;
 }
+header h1 {
+  letter-spacing: 1px;
+}
 
+header p {
+  color: #64748b;
+}
 .logo h1 {
   margin: 0;
   font-size: 28px;
