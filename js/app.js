@@ -1,25 +1,6 @@
-console.log("APP.JS NUEVO CARGADO");
-const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
+console.log("APP.JS CARGADO CORRECTAMENTE");
 
-fetch(URL)
-  .then(res => res.json())
-  .then(data => {
-    const contenedor = document.getElementById("productos");
+const contenedor = document.getElementById("productos");
 
-    data.forEach(p => {
-      if (p.activo === "TRUE") {
-        contenedor.innerHTML += `
-          <div class="card">
-            <img src="images/${p.imagen}" width="150">
-            <h3>${p.nombre}</h3>
-            <p>$${p.precio}</p>
-            <p>Stock: ${p.stock}</p>
-            <a href="https://wa.me/593XXXXXXXXX?text=Hola,%20me%20interesa%20${p.nombre}" target="_blank">
-              Comprar
-            </a>
-          </div>
-        `;
-      }
-    });
-  });
+contenedor.innerHTML = "<h2>JS conectado correctamente</h2>";
 
