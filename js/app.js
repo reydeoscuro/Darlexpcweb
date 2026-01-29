@@ -5,6 +5,7 @@ const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
 fetch(URL)
   .then(response => response.json())
   .then(productos => {
+    console.log(productos);
     const contenedor = document.getElementById("productos");
     contenedor.innerHTML = ""; // limpia
 
