@@ -1,6 +1,6 @@
 console.log("APP.JS CARGADO CON API");
 
-const URL = "Phttps://sheetdb.io/api/v1/1unfoggs799r3";
+const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
 
 fetch(URL)
   .then(response => response.json())
