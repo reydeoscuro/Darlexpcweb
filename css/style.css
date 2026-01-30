@@ -154,3 +154,65 @@ header p {
   font-weight: 600;
   text-decoration: none;
 }
+.producto-detalle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.galeria img {
+  width: 100%;
+}
+
+.img-principal {
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumb {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border: 2px solid #e5e7eb;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #ffffff;
+}
+
+.thumb:hover {
+  border-color: #2563eb;
+}
+
+.info h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.tabla td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla td:first-child {
+  font-weight: 600;
+  color: #374151;
+}
+
+@media (max-width: 900px) {
+  .producto-detalle {
+    grid-template-columns: 1fr;
+  }
+}
