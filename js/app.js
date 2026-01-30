@@ -16,7 +16,11 @@ fetch(URL)
           <h3>${p.NOMBRE}</h3>
           <p>Precio: $${p.PRECIO}</p>
           <p>Stock: ${p.STOCK}</p>
-          <img src="${p["IMAGEN "]}" width="150">
+          <a href="producto.html?id=${p.ID}">
+  <div class="img-box">
+    <img src="${p["IMAGEN "]}" alt="${p.NOMBRE}">
+  </div>
+</a>
         </div>
         <hr>
       `;
