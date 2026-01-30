@@ -143,3 +143,14 @@ header p {
   height: 50%;
   object-fit: contain;
 }
+.btn-whatsapp {
+  display: block;
+  margin-top: 20px;
+  background: #22c55e;
+  color: #ffffff;
+  padding: 14px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
