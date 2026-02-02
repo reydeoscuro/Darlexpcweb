@@ -16,7 +16,7 @@ fetch(URL)
           <h3>${p.NOMBRE}</h3>
           <p>Precio: $${p.PRECIO}</p>
           <p>Stock: ${p.STOCK}</p>
-          <a href="producto.html?id=${p.ID}">
+          <a href="producto.html?id=${p.SN}">
   <div class="img-box">
     <img src="${p["IMAGEN "]}" alt="${p.NOMBRE}">
   </div>
