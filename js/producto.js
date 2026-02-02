@@ -4,12 +4,12 @@ const id = params.get("id");
 const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
 
 console.log("ID URL:", id);
-console.log("IDs Sheet:", data.map(d => d.ID));
+console.log("IDs Sheet:", data.map(d => d.SN));
 
 fetch(URL)
   .then(res => res.json())
   .then(data => {
-    const p = data.find(item => String(item.ID) === id);
+    const p = data.find(item => String(item.SN) === id);
     if (!p) return;
 
     // Galería
