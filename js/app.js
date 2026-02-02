@@ -11,6 +11,7 @@ fetch(URL)
     contenedor.innerHTML = "";
 
     productos.forEach(p => {
+      console.log("SN:", p.SN, "NOMBRE:", p.NOMBRE);
       contenedor.innerHTML += `
         <div class="card">
           <h3>${p.NOMBRE}</h3>
