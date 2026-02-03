@@ -216,3 +216,63 @@ header p {
     grid-template-columns: 1fr;
   }
 }
+/* === PRODUCTO DETALLE === */
+
+.producto-detalle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.galeria img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbs img {
+  width: 70px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid transparent;
+}
+
+.thumbs img:hover {
+  border-color: #2563eb;
+}
+
+.info h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.precio {
+  font-size: 26px;
+  color: #16a34a;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table td {
+  padding: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.btn-volver {
+  text-decoration: none;
+  background: #2563eb;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+}
