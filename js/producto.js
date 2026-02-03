@@ -1,6 +1,3 @@
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
-
 const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
 
 console.log("ID URL:", id);
