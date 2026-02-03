@@ -1,63 +1,73 @@
+console.log("producto.js cargado");
+
+// 1️⃣ leer parámetros de la URL
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+console.log("ID recibido:", id);
+
+// 2️⃣ validar
+if (!id) {
+  document.getElementById("detalle").innerHTML = "<p>ID no válido</p>";
+  throw new Error("ID undefined");
+}
+
+// 3️⃣ URL de la API
 const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
 
-console.log("ID URL:", id);
-console.log("IDs Sheet:", data.map(d => d.SN));
-
+// 4️⃣ traer datos
 fetch(URL)
   .then(res => res.json())
   .then(data => {
-    const p = data.find(item => String(item.SN) === id);
-    if (!p) return;
 
-    // Galería
+    console.log("Productos recibidos:", data);
+
+    // 5️⃣ buscar producto por SN
+    const p = data.find(item => item.SN === id);
+
+    if (!p) {
+      document.getElementById("detalle").innerHTML = "<p>Producto no encontrado</p>";
+      return;
+    }
+
+    // 6️⃣ galería
     const imagenes = p.IMAGENES
       ? p.IMAGENES.split(",").map(img => `
           <img src="${img.trim()}" class="thumb">
         `).join("")
       : "";
 
+    // 7️⃣ pintar HTML
     document.getElementById("detalle").innerHTML = `
       <div class="producto-detalle">
 
         <div class="galeria">
-          <div class="img-principal">
-            <img src="${p.IMAGEN}" id="imgGrande">
-          </div>
-          <div class="thumbs">
-            ${imagenes}
-          </div>
+          <img src="${p["IMAGEN "]}" id="imgGrande">
+          <div class="thumbs">${imagenes}</div>
         </div>
 
         <div class="info">
           <h2>${p.NOMBRE}</h2>
           <p class="precio">$${p.PRECIO}</p>
 
-          <table class="tabla">
-            <tr><td>Procesador</td><td>${p.PROCESADOR}</td></tr>
-            <tr><td>RAM</td><td>${p.RAM}</td></tr>
-            <tr><td>Almacenamiento</td><td>${p.ALMACENAMIENTO}</td></tr>
-            <tr><td>Gráficos</td><td>${p.GRAFICOS}</td></tr>
+          <table>
+            <tr><td>Procesador</td><td>${p.PROCESADOR || "-"}</td></tr>
+            <tr><td>RAM</td><td>${p.RAM || "-"}</td></tr>
+            <tr><td>Almacenamiento</td><td>${p.ROM || "-"}</td></tr>
+            <tr><td>Gráficos</td><td>${p.GRAFICA || "-"}</td></tr>
           </table>
-
-          <a class="btn-whatsapp"
-             href="https://wa.me/593XXXXXXXXX?text=Hola,%20quiero%20el%20producto%20${encodeURIComponent(p.NOMBRE)}"
-             target="_blank">
-            Consultar por WhatsApp
-          </a>
         </div>
 
       </div>
     `;
 
-    // Click en miniaturas
+    // 8️⃣ click en miniaturas
     document.querySelectorAll(".thumb").forEach(img => {
       img.addEventListener("click", () => {
         document.getElementById("imgGrande").src = img.src;
       });
     });
-  });
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
 
-console.log("ID recibido:", id);
+  })
+  .catch(err => console.error("ERROR PRODUCTO:", err));
 
