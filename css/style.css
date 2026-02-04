@@ -129,7 +129,7 @@ header p {
   background: transparent;
   color: inherit;
   padding: 1px;
-  border-radius: 6px;
+  border-radius: 1px;
   text-decoration: none;
   font-weight: 600;
 }
