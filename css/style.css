@@ -135,9 +135,8 @@ header p {
 }
 
 .card a:hover {
-  background: #16a34a;
+  background: transparent;
 }
-
 /* FOOTER */
 .footer {
   margin-top: 40px;
