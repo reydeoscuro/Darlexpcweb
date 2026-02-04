@@ -14,13 +14,17 @@ fetch(URL)
       console.log("SN:", p.SN, "NOMBRE:", p.NOMBRE);
       contenedor.innerHTML += `
         <div class="card">
-          <h3>${p.NOMBRE}</h3>
-          <p>Precio: $${p.PRECIO}</p>
-          <p>Stock: ${p.STOCK}</p>
-          <a href="producto.html?id=${p.SN}">
-  <div class="img-box">
-    <img src="${p["IMAGEN "]}" alt="${p.NOMBRE}">
-  </div>
+  <h3 class="titulo">${p.NOMBRE}</h3>
+
+  <a href="producto.html?id=${p.SN}">
+    <div class="img-box">
+      <img src="${p["IMAGEN "]}" alt="${p.NOMBRE}">
+    </div>
+  </a>
+
+  <p class="precio">$${p.PRECIO}</p>
+  <p class="stock">Stock: ${p.STOCK}</p>
+</div>
 </a>
         </div>
         <hr>
