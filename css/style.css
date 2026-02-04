@@ -117,6 +117,23 @@ header p {
   margin-top: 4px;
 }
 
+/* ===== CONTENEDOR DE IMAGEN (marco clickeable) ===== */
+.img-box {
+  background: #0f172a; /* azul oscuro de la paleta DarleXPC */
+  border-radius: 8px;
+  padding: 10px;
+  transition: background 0.2s ease;
+}
+
+/* Hover: mismo azul pero un poco más claro */
+.card a:hover .img-box {
+  background: #1e293b;
+}
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* BOTON */
 .card a {
   margin-top: auto;
