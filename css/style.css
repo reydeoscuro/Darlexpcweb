@@ -128,8 +128,8 @@ header p {
   text-align: center;
   background: transparent;
   color: inherit;
-  padding: 1px;
-  border-radius: 1px;
+  padding: 0px;
+  border-radius: 0px;
   text-decoration: none;
   font-weight: 600;
 }
