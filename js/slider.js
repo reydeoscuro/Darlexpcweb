@@ -1,6 +1,6 @@
 console.log("SLIDER.JS CARGADO");
 
-const SLIDER_URL = "https://sheetdb.io/api/v1/TU_ID_DEL_SHEET_SLIDER";
+const SLIDER_URL = "https://sheetdb.io/api/v1/7za60l88kidvm";
 
 const track = document.getElementById("slider-track");
 let currentIndex = 0;
