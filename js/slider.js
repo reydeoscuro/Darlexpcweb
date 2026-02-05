@@ -12,9 +12,10 @@ fetch(SLIDER_URL)
       .filter(s => s.ACTIVO === "SI")
       .sort((a, b) => a.ORDEN - b.ORDEN);
 
-    activos.forEach(slide => {
-      const div = document.createElement("div");
-      div.className = "slide";
+  activos.forEach((slide, index) => {
+  const div = document.createElement("div");
+  div.className = "slide";
+  if (index === 0) div.classList.add("active");
 
       const img = document.createElement("img");
       img.src = slide.IMAGEN;
