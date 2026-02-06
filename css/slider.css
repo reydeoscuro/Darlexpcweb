@@ -2,9 +2,11 @@
 
 .slider {
   position: relative;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
+  max-width: 1200px;
+  margin: 30px auto;
   overflow: hidden;
+  border-radius: 14px;
   background: #0f172a; /* azul DarleXPC */
 }
 
@@ -15,17 +17,12 @@
 
 .slide {
   min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* IMAGENES */
 .slide img {
   width: 100%;
-  max-height: 420px;
-  height: auto;
-  object-fit: contain; /* 🔥 clave: no corta */
+  height: 360px;
+  object-fit: cover;
   display: block;
 }
 
@@ -45,20 +42,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
 }
 
 .slider-btn:hover {
   background: rgba(15, 23, 42, 0.9);
 }
 
-.slider-btn.prev { left: 16px; }
-.slider-btn.next { right: 16px; }
+.slider-btn.prev { left: 12px; }
+.slider-btn.next { right: 12px; }
 
 /* Responsive */
 @media (max-width: 768px) {
   .slide img {
-    max-height: 240px;
+    height: 220px;
   }
 }
 
