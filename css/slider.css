@@ -54,10 +54,28 @@
 .slider-btn.prev { left: 12px; }
 .slider-btn.next { right: 12px; }
 
-/* Responsive */
+/* ================= RESPONSIVE ================= */
+
+/* 📱 MÓVIL */
 @media (max-width: 768px) {
   .slide img {
-    height: 220px;
+    max-height: 200px;
+  }
+
+  .slider-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+
+  .slider-btn.prev { left: 8px; }
+  .slider-btn.next { right: 8px; }
+}
+
+/* 📲 TABLET */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slide img {
+    max-height: 280px;
   }
 }
 
