@@ -13,7 +13,7 @@ fetch(URL)
     productos.forEach(p => {
       console.log("SN:", p.SN, "NOMBRE:", p.NOMBRE);
       contenedor.innerHTML += `
-        <div class="card">
+        <div class="card producto-card" data-cat="${p.CATEGORIA}">
   <h3 class="titulo">${p.NOMBRE}</h3>
 
   <a href="producto.html?id=${p.SN}">
