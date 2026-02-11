@@ -73,34 +73,21 @@ header p {
 }
 
 /* ===== MOBILE ===== */
+
 @media (max-width: 768px) {
   .menu {
     justify-content: flex-start;
-    position: relative;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
   }
 
-  .menu-toggle {
-    display: block;
+  .menu::-webkit-scrollbar {
+    display: none;
   }
 
-  .menu-items {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #0f172a;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    border-bottom: 1px solid #e5e7eb;
-  }
-
-  .menu-items.active {
-    max-height: 300px;
+  .menu button {
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 /* CONTENEDOR */
