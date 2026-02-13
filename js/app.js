@@ -10,7 +10,9 @@ fetch(URL)
     const contenedor = document.getElementById("productos");
     contenedor.innerHTML = "";
 
-    productos.forEach(p => {
+    productos
+  .filter(p => p.ACTIVO && p.ACTIVO.trim().toUpperCase() === "SI")
+  .forEach(p => {
       console.log("SN:", p.SN, "NOMBRE:", p.NOMBRE);
       contenedor.innerHTML += `
         <div class="card producto-card" data-cat="${p.CATEGORIA}">
