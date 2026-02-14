@@ -27,8 +27,12 @@ console.log("nav.js cargado");
       }
 
       productos.forEach(card => {
-        card.style.display =
-          card.dataset.cat === categoria ? "block" : "none";
+        if (categoria === "todos") {
+  card.style.display = "block";
+} else {
+  card.style.display =
+    card.dataset.cat === categoria ? "block" : "none";
+}
       });
     });
   });
