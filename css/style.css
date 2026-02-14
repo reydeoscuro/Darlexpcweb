@@ -55,6 +55,12 @@ body {
   font-size: 13px;
   color: #64748b;
 }
+.logo a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
 
 /* Mobile */
 @media (max-width: 768px) {
