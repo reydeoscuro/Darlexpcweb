@@ -430,3 +430,7 @@ table td {
   border-radius: 6px;
   font-weight: 500;
 }
+.hidden {
+  display: none !important;
+}
+
