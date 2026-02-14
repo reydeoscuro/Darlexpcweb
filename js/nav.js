@@ -37,3 +37,34 @@ console.log("nav.js cargado");
     });
   });
 })();
+// ===== BUSCADOR NAV =====
+
+const searchToggle = document.getElementById("searchToggle");
+const searchInput = document.getElementById("searchInput");
+const navSearch = document.querySelector(".nav-search");
+
+if (searchToggle && searchInput && navSearch) {
+
+  // Expandir en móvil
+  searchToggle.addEventListener("click", () => {
+    navSearch.classList.toggle("active");
+    searchInput.focus();
+  });
+
+  // Filtrar por nombre
+  searchInput.addEventListener("keyup", () => {
+    const texto = searchInput.value.toLowerCase();
+    const productos = document.querySelectorAll(".producto-card");
+
+    productos.forEach(card => {
+      const nombre = card
+        .querySelector(".titulo")
+        .textContent.toLowerCase();
+
+      card.style.display = nombre.includes(texto)
+        ? "block"
+        : "none";
+    });
+  });
+}
+
