@@ -21,8 +21,6 @@ fetch(URL)
   <a href="producto.html?id=${p.SN}">
     <div class="img-box">
       <img src="${p["IMAGEN "]}" alt="${p.NOMBRE}">
-    </div>
-  </a>
 
   <p class="precio">$${p.PRECIO}</p>
   <p class="stock">Stock: ${p.STOCK}</p>
