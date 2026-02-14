@@ -29,7 +29,6 @@ fetch(URL)
 </div>
 </a>
         </div>
-        <hr>
       `;
     });
   })
