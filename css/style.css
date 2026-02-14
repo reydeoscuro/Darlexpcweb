@@ -48,17 +48,17 @@ body {
   letter-spacing: 1px;
   color: #0f172a;
 }
+.logo a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
 
 .logo span {
   display: block;
   margin-top: 4px;
   font-size: 13px;
   color: #64748b;
-}
-.logo a {
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
 }
 
 
