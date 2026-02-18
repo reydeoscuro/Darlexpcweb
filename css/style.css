@@ -433,4 +433,46 @@ table td {
 .hidden {
   display: none !important;
 }
+@media (max-width: 768px) {
+
+  .producto-detalle {
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 20px;
+  }
+
+  .galeria img {
+    max-height: 350px;
+    object-fit: contain;
+  }
+
+  .thumbs {
+    overflow-x: auto;
+  }
+
+  .thumbs img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .info h2 {
+    font-size: 20px;
+  }
+
+  .precio {
+    font-size: 22px;
+  }
+
+  table td {
+    font-size: 14px;
+  }
+
+  .btn-volver {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+}
 
