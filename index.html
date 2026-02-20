@@ -34,21 +34,28 @@
 <!-- =============== FIN SLIDER ================= -->
     <!-- ================= NAV CATEGORIAS ================= -->
 <nav class="menu">
-  <div class="nav-search">
-  <button id="searchToggle" class="search-btn">
-    🔍
-  </button>
-  <input type="text" id="searchInput" placeholder="Buscar producto...">
-</div>
-  <button data-cat="todos">Todos</button>
-  <button data-cat="Laptops">Laptops</button>
-  <button data-cat="PCs">PCs</button>
-  <button data-cat="Componentes">Componentes</button>
-  <button data-cat="Accesorios">Accesorios</button>
-    <!-- ICONO CARRITO -->
-  <div class="cart-icon">
-    🛒 <span class="cart-count">0</span>
+
+  <!-- LADO IZQUIERDO FIJO -->
+  <div class="nav-left">
+    <div class="cart-icon">
+      🛒 <span class="cart-count">0</span>
+    </div>
+
+    <div class="nav-search">
+      <button id="searchToggle" class="search-btn">🔍</button>
+      <input type="text" id="searchInput" placeholder="Buscar producto...">
+    </div>
   </div>
+
+  <!-- CATEGORIAS SCROLL -->
+  <div class="menu-scroll">
+    <button data-cat="todos">Todos</button>
+    <button data-cat="Laptops">Laptops</button>
+    <button data-cat="PCs">PCs</button>
+    <button data-cat="Componentes">Componentes</button>
+    <button data-cat="Accesorios">Accesorios</button>
+  </div>
+
 </nav>
   <!-- =============== FIN NAV ================= -->
 
