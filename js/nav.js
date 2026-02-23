@@ -28,10 +28,10 @@ console.log("nav.js cargado");
 
       productos.forEach(card => {
         if (categoria === "todos") {
-  card.style.display = "block";
+  card.style.display = "flex";
 } else {
   card.style.display =
-    card.dataset.cat === categoria ? "block" : "none";
+    card.dataset.cat === categoria ? "flex" : "none";
 }
       });
     });
@@ -62,7 +62,7 @@ if (searchToggle && searchInput && navSearch) {
         .textContent.toLowerCase();
 
       card.style.display = nombre.includes(texto)
-        ? "block"
+        ? "flex"
         : "none";
     });
   });
