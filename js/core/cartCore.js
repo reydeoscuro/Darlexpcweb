@@ -13,7 +13,12 @@ function guardarCarrito() {
 // Agregar producto al carrito
 function agregarAlCarrito(producto) {
 
-  // Buscar si ya existe el producto por su ID
+  // Normalizar precio (quita $ si viene)
+  const precioLimpio = Number(
+    String(producto.precio).replace("$", "").replace(",", "")
+  ) || 0;
+
+  // Buscar si ya existe
   const existe = carrito.find(p => p.id === producto.id);
 
   if (existe) {
@@ -21,8 +26,9 @@ function agregarAlCarrito(producto) {
   } else {
     carrito.push({
       id: producto.id,
-      nombre: producto.nombre,
-      precio: Number(producto.precio),
+      nombre: producto.nombre || "Producto",
+      precio: precioLimpio,
+      imagen: producto.imagen || "",   // 🔥 ahora guardamos imagen
       cantidad: 1
     });
   }
