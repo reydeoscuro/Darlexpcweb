@@ -75,38 +75,17 @@ function activarBotonesCarrito() {
   botones.forEach(btn => {
     btn.addEventListener("click", () => {
 
-      const id = btn.dataset.id;
+      const card = btn.closest(".producto-card");
 
-      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const producto = {
+        id: btn.dataset.id,
+        nombre: card.querySelector(".titulo").textContent,
+        precio: card.querySelector(".precio").textContent.replace("$", ""),
+      };
 
-      const existe = carrito.find(p => p.id === id);
-
-      if (existe) {
-        existe.cantidad++;
-      } else {
-        carrito.push({ id: id, cantidad: 1 });
-      }
-
-      localStorage.setItem("carrito", JSON.stringify(carrito));
-
-      actualizarContador();
+      agregarAlCarrito(producto);
     });
   });
-}
-
-function actualizarContador() {
-
-  const contador = document.querySelector(".cart-count");
-  if (!contador) return;
-
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-  const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-
-  contador.textContent = total;
-
-  contador.classList.add("bump");
-  setTimeout(() => contador.classList.remove("bump"), 200);
 }
 
 /* ==================================================
