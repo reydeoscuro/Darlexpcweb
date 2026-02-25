@@ -32,3 +32,43 @@ function mostrarConfirmacion() {
 
 // Cargar contador al iniciar página
 document.addEventListener("DOMContentLoaded", actualizarContador);
+
+// CARRITO DESPLEGABLE 
+function abrirCarrito() {
+  document.getElementById("cartSidebar").classList.add("active");
+  document.getElementById("cartOverlay").classList.add("active");
+  renderizarCarrito();
+}
+
+function cerrarCarrito() {
+  document.getElementById("cartSidebar").classList.remove("active");
+  document.getElementById("cartOverlay").classList.remove("active");
+}
+
+function renderizarCarrito() {
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const contenedor = document.getElementById("cartItems");
+  const totalElemento = document.getElementById("cartTotal");
+
+  contenedor.innerHTML = "";
+
+  let total = 0;
+
+  carrito.forEach(item => {
+    total += item.precio * item.cantidad;
+
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+      <strong>${item.nombre}</strong>
+      <p>Cantidad: ${item.cantidad}</p>
+      <p>$${item.precio}</p>
+    `;
+    contenedor.appendChild(div);
+  });
+
+  totalElemento.textContent = total.toFixed(2);
+}
+
+document.getElementById("cerrarCarrito")?.addEventListener("click", cerrarCarrito);
+document.getElementById("cartOverlay")?.addEventListener("click", cerrarCarrito);
