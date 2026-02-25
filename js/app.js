@@ -73,20 +73,19 @@ function activarBotonesCarrito() {
   const botones = document.querySelectorAll(".btn-add");
 
   botones.forEach(btn => {
-    btn.addEventListener("click", () => {
+      btn.addEventListener("click", () => {
 
-      const card = btn.closest(".producto-card");
+  const card = btn.closest(".producto-card");
 
-      const producto = {
-        id: btn.dataset.id,
-        nombre: card.querySelector(".titulo").textContent,
-        precio: card.querySelector(".precio").textContent.replace("$", ""),
-      };
+  const producto = {
+    id: btn.dataset.id,
+    nombre: card.querySelector(".titulo").textContent,
+    precio: card.querySelector(".precio").textContent,
+    imagen: card.querySelector("img")?.src
+  };
 
-      agregarAlCarrito(producto);
-    });
-  });
-}
+  agregarAlCarrito(producto);
+});
 
 /* ==================================================
    ================== FILTRO CATEGORÍAS ============
