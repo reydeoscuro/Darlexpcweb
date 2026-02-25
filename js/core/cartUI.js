@@ -72,3 +72,9 @@ function renderizarCarrito() {
 
 document.getElementById("cerrarCarrito")?.addEventListener("click", cerrarCarrito);
 document.getElementById("cartOverlay")?.addEventListener("click", cerrarCarrito);
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("btnAbrirCarrito");
+  if (btn) {
+    btn.addEventListener("click", abrirCarrito);
+  }
+});
