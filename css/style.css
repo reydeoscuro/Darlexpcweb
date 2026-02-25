@@ -234,21 +234,60 @@ body {
    CARRITO NEON DARLEXPC V2
 ========================================= */
 
-/* Fondo lateral más premium */
+/* Contenedor lateral (MECÁNICA ORIGINAL INTACTA) */
 .cart-sidebar {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
 }
 
-/* Header más fuerte */
+/* Estado activo */
+.cart-sidebar.active {
+  right: 0;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.cart-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Header */
 .cart-header {
-  font-weight: 700;
+  padding: 18px;
   font-size: 18px;
+  font-weight: 700;
   background: #0f172a;
   color: white;
-  border-bottom: none;
 }
 
-/* Items tipo ecommerce moderno */
+/* Lista de productos */
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* Item individual */
 .cart-item {
   display: flex;
   gap: 12px;
@@ -256,17 +295,17 @@ body {
   padding: 14px;
   border-radius: 10px;
   background: #ffffff;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   border: 1px solid #e5e7eb;
-  transition: all 0.2s ease;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cart-item:hover {
   border-color: #0b5cff;
-  box-shadow: 0 0 0 2px rgba(11, 92, 255, 0.1);
+  box-shadow: 0 0 0 2px rgba(11, 92, 255, 0.08);
 }
 
-/* Imagen miniatura controlada */
+/* Imagen miniatura */
 .cart-item-img {
   width: 70px;
   height: 70px;
@@ -285,45 +324,50 @@ body {
   object-fit: contain;
 }
 
-/* Info producto */
+/* Información */
 .cart-item-info {
   flex: 1;
+  font-size: 14px;
 }
 
 .cart-item-info strong {
+  display: block;
   font-size: 14px;
+  margin-bottom: 4px;
   color: #0f172a;
 }
 
 .cart-item-info p {
-  font-size: 13px;
+  margin: 2px 0;
   color: #64748b;
-  margin: 3px 0;
 }
 
-/* Precio dominante */
+/* Precio */
 .cart-item-price {
   font-weight: 700;
-  color: #0b5cff;
   font-size: 15px;
+  color: #0b5cff;
 }
 
-/* Total destacado */
+/* Footer */
 .cart-footer {
-  border-top: 1px solid #e5e7eb;
   padding: 20px;
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
 }
 
+/* Total */
 #cartTotal {
   font-size: 22px;
   font-weight: 800;
   color: #16a34a;
 }
 
-/* Botón Checkout estilo ecommerce fuerte */
+/* Botón checkout */
 .cart-checkout-btn {
   width: 100%;
   padding: 14px;
+  margin-top: 12px;
   border-radius: 10px;
   border: none;
   font-weight: 700;
@@ -331,14 +375,13 @@ body {
   cursor: pointer;
   background: linear-gradient(90deg, #0b5cff, #2563eb);
   color: white;
-  margin-top: 12px;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 20px rgba(11, 92, 255, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 20px rgba(11, 92, 255, 0.25);
 }
 
 .cart-checkout-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(11, 92, 255, 0.45);
+  box-shadow: 0 10px 30px rgba(11, 92, 255, 0.35);
 }
 /* ==================================================
    ================== CARD PRODUCTO ================
