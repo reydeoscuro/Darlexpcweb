@@ -89,16 +89,23 @@ function renderizarCarrito() {
     const nombre = item.nombre || item.title || "Producto";
     const precio = Number(item.precio || item.price || 0);
     const cantidad = Number(item.cantidad || 1);
-
+    const imagen = item.imagen || ""; // ← incisión mínima
+     
     total += precio * cantidad;
 
     const div = document.createElement("div");
     div.classList.add("cart-item");
 
     div.innerHTML = `
-      <strong>${nombre}</strong>
-      <p>Cantidad: ${cantidad}</p>
-      <p>$${precio.toFixed(2)}</p>
+      <div class="cart-item-img">
+        <img src="${imagen}" alt="${nombre}">
+      </div>
+
+      <div class="cart-item-info">
+        <strong>${nombre}</strong>
+        <p>Cantidad: ${cantidad}</p>
+        <p>$${precio.toFixed(2)}</p>
+      </div>
     `;
 
     contenedor.appendChild(div);
