@@ -14,7 +14,7 @@ async function cargarSlider() {
   if (cache) {
     const parsed = JSON.parse(cache);
 
-    if (Date.now() - parsed.timestamp < CACHE_TIME) {
+    if (Date.now() - parsed.timestamp < CACHE_TIME_SLIDER) {
       renderSlider(parsed.data);
       return;
     }
