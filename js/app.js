@@ -7,24 +7,61 @@ const contenedor = document.getElementById("productos");
    ================== FETCH PRODUCTOS ===============
 ================================================== */
 
-fetch(URL)
-  .then(response => response.json())
-  .then(productos => {
+const CACHE_KEY_PRODUCTOS = "cache_productos";
+const CACHE_TIME = 5 * 60 * 1000; // 5 minutos
 
-    contenedor.innerHTML = "";
+async function cargarProductos() {
 
-    const productosActivos = productos.filter(p =>
+  const cache = localStorage.getItem(CACHE_KEY_PRODUCTOS);
+
+  if (cache) {
+    const parsed = JSON.parse(cache);
+
+    if (Date.now() - parsed.timestamp < CACHE_TIME) {
+      renderProductos(parsed.data);
+      activarFiltroCategorias();
+      return;
+    }
+  }
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+      console.error("La API no devolvió un array:", data);
+      mostrarMensajeError();
+      return;
+    }
+
+    const productosActivos = data.filter(p =>
       p.ACTIVO &&
       p.ACTIVO.trim().toUpperCase() === "SI"
     );
 
+    localStorage.setItem(CACHE_KEY_PRODUCTOS, JSON.stringify({
+      timestamp: Date.now(),
+      data: productosActivos
+    }));
+
     renderProductos(productosActivos);
     activarFiltroCategorias();
 
-  })
-  .catch(error => {
+  } catch (error) {
     console.error("ERROR FETCH:", error);
-  });
+    mostrarMensajeError();
+  }
+}
+
+function mostrarMensajeError() {
+  contenedor.innerHTML = `
+    <div style="text-align:center; padding:20px;">
+      Estamos actualizando productos. Intenta en unos minutos.
+    </div>
+  `;
+}
+
+cargarProductos();
 
 /* ==================================================
    ================== RENDER PRODUCTOS ==============
