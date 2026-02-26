@@ -2,7 +2,7 @@ console.log("SLIDER.JS CARGADO");
 
 const SLIDER_URL = "https://sheetdb.io/api/v1/7za60l88kidvm";
 const CACHE_KEY_SLIDER = "cache_slider";
-const CACHE_TIME = 5 * 60 * 1000;
+const CACHE_TIME_SLIDER = 5 * 60 * 1000;
 
 const track = document.getElementById("slider-track");
 let currentIndex = 0;
