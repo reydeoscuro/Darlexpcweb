@@ -1,6 +1,6 @@
 console.log("APP.JS V2 CARGADO");
 
-const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
+const URL = "https://darlex-api.david-villegas6991.workers.dev/";
 const contenedor = document.getElementById("productos");
 
 /* ==================================================
