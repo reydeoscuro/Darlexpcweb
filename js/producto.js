@@ -42,7 +42,7 @@ fetch(URL)
       <div class="producto-detalle">
 
         <div class="galeria">
-          <img src="${p["IMAGEN "]}" id="imgGrande">
+          <img src="${p["IMAGEN"]}" id="imgGrande">
           <div class="thumbs">${imagenes}</div>
         </div>
 
