@@ -13,7 +13,7 @@ if (!id) {
 }
 
 // 3️⃣ URL de la API
-const URL = "https://sheetdb.io/api/v1/1unfoggs799r3";
+const URL = "https://darlex-api.david-villegas6991.workers.dev/";
 
 // 4️⃣ traer datos
 fetch(URL)
