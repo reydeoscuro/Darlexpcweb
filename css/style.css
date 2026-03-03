@@ -383,6 +383,54 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(11, 92, 255, 0.35);
 }
+/* =========================================
+   CARRITO RESPONSIVE MOBILE PATCH V2
+   (NO ALTERA ESTRUCTURA DESKTOP)
+========================================= */
+
+@media (max-width: 768px) {
+
+  .cart-sidebar {
+    width: 100%;
+    right: -100%;
+    border-radius: 0;
+  }
+
+  .cart-sidebar.active {
+    right: 0;
+  }
+
+  .cart-header {
+    font-size: 17px;
+    padding: 16px;
+  }
+
+  .cart-items {
+    padding: 14px;
+  }
+
+  .cart-item {
+    padding: 12px;
+  }
+
+  .cart-item-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cart-footer {
+    padding: 16px;
+  }
+
+  #cartTotal {
+    font-size: 20px;
+  }
+
+  .cart-checkout-btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
 /* ==================================================
    ================== CARD PRODUCTO ================
 ================================================== */
