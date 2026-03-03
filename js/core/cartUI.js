@@ -113,10 +113,12 @@ function renderizarCarrito() {
   </button>
     `;
 
+    div.querySelector(".cart-remove").addEventListener("click", () => {
+      eliminarProducto(nombre);
+    });
+
     contenedor.appendChild(div);
-  div.querySelector(".cart-remove").addEventListener("click", () => {
-  eliminarProducto(nombre);
-});
+  });
 
   totalElemento.textContent = total.toFixed(2);
 }
