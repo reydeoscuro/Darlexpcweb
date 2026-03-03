@@ -103,7 +103,11 @@ function renderizarCarrito() {
 
       <div class="cart-item-info">
         <strong>${nombre}</strong>
-        <p>Cantidad: ${cantidad}</p>
+        <div class="cart-quantity-controls">
+  <button class="qty-btn minus" data-id="${item.id}">−</button>
+  <span class="qty-number">${cantidad}</span>
+  <button class="qty-btn plus" data-id="${item.id}">+</button>
+</div>
         <p>$${precio.toFixed(2)}</p>
       </div>
       
@@ -116,7 +120,15 @@ function renderizarCarrito() {
     div.querySelector(".cart-remove").addEventListener("click", () => {
       eliminarProducto(nombre);
     });
+// Botón +
+div.querySelector(".plus").addEventListener("click", () => {
+  cambiarCantidad(item.id, 1);
+});
 
+// Botón -
+div.querySelector(".minus").addEventListener("click", () => {
+  cambiarCantidad(item.id, -1);
+});
     contenedor.appendChild(div);
   });
 
@@ -130,6 +142,23 @@ function renderizarCarrito() {
     const nombre = item.nombre || item.title || "Producto";
     return nombre !== nombreProducto;
   });
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+function cambiarCantidad(idProducto, cambio) {
+
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  const producto = carrito.find(item => item.id === idProducto);
+
+  if (!producto) return;
+
+  producto.cantidad += cambio;
+
+  // Si la cantidad baja a 0, eliminar producto
+  if (producto.cantidad <= 0) {
+    carrito = carrito.filter(item => item.id !== idProducto);
+  }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
