@@ -399,6 +399,32 @@ body {
   background: #dc2626;
   transform: scale(1.05);
 }
+.cart-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0;
+}
+
+.qty-btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.qty-btn:hover {
+  background: #333;
+}
+
+.qty-number {
+  min-width: 20px;
+  text-align: center;
+}
 /* =========================================
    CARRITO RESPONSIVE MOBILE PATCH V2
    (NO ALTERA ESTRUCTURA DESKTOP)
