@@ -106,14 +106,34 @@ function renderizarCarrito() {
         <p>Cantidad: ${cantidad}</p>
         <p>$${precio.toFixed(2)}</p>
       </div>
+      
+        <!-- Botón eliminar -->
+  <button class="cart-remove" data-nombre="${nombre}">
+    🗑
+  </button>
     `;
 
     contenedor.appendChild(div);
-  });
+  div.querySelector(".cart-remove").addEventListener("click", () => {
+  eliminarProducto(nombre);
+});
 
   totalElemento.textContent = total.toFixed(2);
 }
 
+                  function eliminarProducto(nombreProducto) {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  carrito = carrito.filter(item => {
+    const nombre = item.nombre || item.title || "Producto";
+    return nombre !== nombreProducto;
+  });
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
+  renderizarCarrito();
+  actualizarContador();
+}
 
 /* ================================
    EVENTOS
