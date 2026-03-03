@@ -135,7 +135,7 @@ div.querySelector(".minus").addEventListener("click", () => {
   totalElemento.textContent = total.toFixed(2);
 }
 
-                  function eliminarProducto(nombreProducto) {
+function eliminarProducto(nombreProducto) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   carrito = carrito.filter(item => {
@@ -144,6 +144,10 @@ div.querySelector(".minus").addEventListener("click", () => {
   });
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
+   
+renderizarCarrito();
+actualizarContador();
+}
 
 function cambiarCantidad(idProducto, cambio) {
 
