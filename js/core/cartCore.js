@@ -2,8 +2,6 @@
 // CARRITO BASE
 // ============================
 
-// Cargar carrito desde localStorage o crear vacío
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Guardar carrito en localStorage
 function guardarCarrito() {
@@ -13,12 +11,13 @@ function guardarCarrito() {
 // Agregar producto al carrito
 function agregarAlCarrito(producto) {
 
-  // Normalizar precio (quita $ si viene)
+  // 🔥 Siempre recargar carrito actual
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
   const precioLimpio = Number(
     String(producto.precio).replace("$", "").replace(",", "")
   ) || 0;
 
-  // Buscar si ya existe
   const existe = carrito.find(p => p.id === producto.id);
 
   if (existe) {
@@ -28,12 +27,13 @@ function agregarAlCarrito(producto) {
       id: producto.id,
       nombre: producto.nombre || "Producto",
       precio: precioLimpio,
-      imagen: producto.imagen || "",   // 🔥 ahora guardamos imagen
+      imagen: producto.imagen || "",
       cantidad: 1
     });
   }
 
-  guardarCarrito();
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+
   actualizarContador();
   mostrarConfirmacion();
 }
