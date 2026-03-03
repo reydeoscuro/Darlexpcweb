@@ -383,6 +383,22 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 10px 30px rgba(11, 92, 255, 0.35);
 }
+.cart-remove {
+  background: #ef4444;
+  border: none;
+  color: white;
+  font-size: 13px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.2s ease;
+}
+
+.cart-remove:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
 /* =========================================
    CARRITO RESPONSIVE MOBILE PATCH V2
    (NO ALTERA ESTRUCTURA DESKTOP)
