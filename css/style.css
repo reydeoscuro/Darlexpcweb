@@ -439,6 +439,46 @@ body {
 .cart-clear:hover {
   background: #b91c1c;
 }
+/* ================================
+   BOTON WHATSAPP CARRITO
+================================ */
+
+.btn-whatsapp {
+
+  width: 100%;
+  padding: 14px;
+
+  background-color: #25D366; /* verde oficial WhatsApp */
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+}
+
+/* hover */
+
+.btn-whatsapp:hover {
+
+  background-color: #1ebe5d;
+  transform: translateY(-1px);
+
+}
+
+/* cuando se presiona */
+
+.btn-whatsapp:active {
+
+  transform: translateY(0px);
+
+}
 /* =========================================
    CARRITO RESPONSIVE MOBILE PATCH V2
    (NO ALTERA ESTRUCTURA DESKTOP)
