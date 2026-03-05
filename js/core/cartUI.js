@@ -170,6 +170,12 @@ function cambiarCantidad(idProducto, cambio) {
   actualizarContador();
 }
 
+function vaciarCarrito() {
+  localStorage.removeItem("carrito");
+
+  renderizarCarrito();
+  actualizarContador();
+}
 /* ================================
    EVENTOS
 ================================ */
