@@ -176,6 +176,36 @@ function vaciarCarrito() {
   renderizarCarrito();
   actualizarContador();
 }
+function enviarPedidoWhatsApp() {
+
+  const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  if (carrito.length === 0) {
+    alert("El carrito está vacío");
+    return;
+  }
+
+  let mensaje = "Hola, quiero realizar el siguiente pedido:%0A%0A";
+
+  carrito.forEach(item => {
+
+    mensaje += `• ${item.nombre}%0A`;
+    mensaje += `Cantidad: ${item.cantidad}%0A`;
+    mensaje += `Precio: $${item.precio}%0A%0A`;
+
+  });
+
+  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+
+  mensaje += `Total: $${total.toFixed(2)}`;
+
+  const telefono = "593980526438"; // tu número empresa
+
+  const url = `https://wa.me/${telefono}?text=${mensaje}`;
+
+  window.open(url, "_blank");
+
+}
 /* ================================
    EVENTOS
 ================================ */
@@ -188,6 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnCerrar = document.getElementById("cerrarCarrito");
   const overlay = document.getElementById("cartOverlay");
   const btnVaciar = document.getElementById("vaciarCarritoBtn");
+   const btnEnviar = document.getElementById("enviarPedidoBtn");
 
   if (btnAbrir) {
     btnAbrir.addEventListener("click", (e) => {
@@ -205,5 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnVaciar) {
   btnVaciar.addEventListener("click", vaciarCarrito);
   }
-
+  if (btnEnviar) {
+  btnEnviar.addEventListener("click", enviarPedidoWhatsApp);
+  }
 });
