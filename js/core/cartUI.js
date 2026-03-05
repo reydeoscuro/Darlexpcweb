@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnAbrir = document.getElementById("btnAbrirCarrito");
   const btnCerrar = document.getElementById("cerrarCarrito");
   const overlay = document.getElementById("cartOverlay");
+  const btnVaciar = document.getElementById("vaciarCarritoBtn");
 
   if (btnAbrir) {
     btnAbrir.addEventListener("click", (e) => {
@@ -198,9 +199,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnCerrar) {
     btnCerrar.addEventListener("click", cerrarCarrito);
   }
-
   if (overlay) {
     overlay.addEventListener("click", cerrarCarrito);
+  }
+  if (btnVaciar) {
+  btnVaciar.addEventListener("click", vaciarCarrito);
   }
 
 });
