@@ -278,6 +278,18 @@ body {
   font-weight: 700;
   background: #0f172a;
   color: white;
+   
+   display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.cart-header button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* Lista de productos */
