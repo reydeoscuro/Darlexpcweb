@@ -278,10 +278,52 @@ body {
   font-weight: 700;
   background: #0f172a;
   color: white;
-   
-   display: flex;
+
+  display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* ===============================
+   BOTON CERRAR CARRITO
+================================ */
+
+#cerrarCarrito {
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  background: transparent;
+
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+}
+
+/* hover tipo botón físico */
+
+#cerrarCarrito:hover {
+
+  background: rgba(255,255,255,0.15);
+  border-color: white;
+
+}
+
+/* efecto click */
+
+#cerrarCarrito:active {
+
+  transform: scale(0.92);
 
 }
 .cart-header button {
