@@ -1,15 +1,23 @@
 /* ==================================================
-   ===================== ROOT =======================
+DARLEXPC WEB V2
+CSS COMPLETO ESTABLE
+================================================== */
+
+/* ==================================================
+ROOT COLORES
 ================================================== */
 
 :root{
 
---color-bg:#f1f5f9;
---color-dark:#0f172a;
---color-blue:#2563eb;
---color-blue-glow:#0ea5e9;
---color-red:#ef4444;
---color-green:#16a34a;
+--bg-main:#f1f5f9;
+--dark:#0f172a;
+--dark-soft:#1e293b;
+
+--blue:#2563eb;
+--blue-glow:#0ea5e9;
+
+--red:#ef4444;
+--green:#16a34a;
 
 --text-main:#111827;
 --text-soft:#64748b;
@@ -17,7 +25,7 @@
 }
 
 /* ==================================================
-   ===================== BASE =======================
+BASE
 ================================================== */
 
 *{
@@ -28,7 +36,8 @@ body{
 
 margin:0;
 font-family:"Segoe UI",Arial,sans-serif;
-background:var(--color-bg);
+
+background:var(--bg-main);
 color:var(--text-main);
 
 }
@@ -38,56 +47,62 @@ display:none!important;
 }
 
 /* ==================================================
-   ===================== HEADER =====================
+TOPBAR
 ================================================== */
 
-.top,
-.header-main{
+.topbar{
 
-background:linear-gradient(
-180deg,
-rgba(255,255,255,0.95) 0%,
-rgba(248,250,252,0.9) 100%
-);
+display:flex;
+justify-content:space-between;
+align-items:center;
 
-backdrop-filter:blur(6px);
-padding:28px 32px;
-border-bottom:1px solid rgba(15,23,42,0.08);
+padding:8px 28px;
 
-position:relative;
-z-index:30;
+background:var(--dark);
+color:#e2e8f0;
+
+font-size:13px;
 
 }
 
-/* sombra suave */
+.topbar-right a{
 
-.top::after,
+color:#93c5fd;
+text-decoration:none;
+margin-left:14px;
+
+}
+
+.topbar-right a:hover{
+
+color:white;
+
+}
+
+/* ==================================================
+HEADER
+================================================== */
+
+.header-main{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:22px 32px;
+
+background:white;
+
+position:relative;
+
+}
+
+/* linea AMG */
+
 .header-main::after{
 
 content:"";
-position:absolute;
-bottom:-8px;
-left:0;
 
-width:100%;
-height:8px;
-
-background:linear-gradient(
-to bottom,
-rgba(15,23,42,0.08),
-transparent
-);
-
-pointer-events:none;
-
-}
-
-/* línea AMG */
-
-.top::before,
-.header-main::before{
-
-content:"";
 position:absolute;
 bottom:0;
 left:0;
@@ -97,9 +112,9 @@ height:4px;
 
 background:linear-gradient(
 90deg,
-var(--color-blue-glow) 0%,
-var(--color-blue) 40%,
-var(--color-dark) 100%
+var(--blue-glow),
+var(--blue),
+var(--dark)
 );
 
 }
@@ -111,8 +126,18 @@ var(--color-dark) 100%
 margin:0;
 font-size:30px;
 font-weight:700;
-letter-spacing:1px;
-color:var(--color-dark);
+
+color:var(--dark);
+
+}
+
+.logo span{
+
+display:block;
+margin-top:4px;
+
+font-size:13px;
+color:var(--text-soft);
 
 }
 
@@ -123,92 +148,95 @@ color:inherit;
 
 }
 
-.logo span{
+/* HEADER ACTIONS */
 
-display:block;
-margin-top:4px;
-font-size:13px;
-color:var(--text-soft);
+.header-actions{
 
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.top,
-.header-main{
-
-padding:22px 18px;
-text-align:center;
-
-}
-
-.logo h1{
-font-size:26px;
-}
+display:flex;
+align-items:center;
 
 }
 
 /* ==================================================
-   ===================== NAVBAR =====================
+CARRITO ICONO
+================================================== */
+
+.cart-icon{
+
+font-size:22px;
+cursor:pointer;
+
+color:var(--dark);
+
+display:flex;
+align-items:center;
+
+}
+
+.cart-count{
+
+background:var(--red);
+color:white;
+
+border-radius:50%;
+
+padding:3px 7px;
+font-size:12px;
+
+margin-left:6px;
+
+}
+
+/* ==================================================
+NAV STORE
+================================================== */
+
+.nav-store{
+
+display:flex;
+gap:28px;
+
+padding:14px 32px;
+
+background:var(--dark);
+
+}
+
+.nav-store a{
+
+color:#e2e8f0;
+
+text-decoration:none;
+
+font-size:14px;
+font-weight:500;
+
+transition:.2s;
+
+}
+
+.nav-store a:hover{
+
+color:#60a5fa;
+
+}
+
+/* ==================================================
+MENU CATALOGO
 ================================================== */
 
 .menu{
 
 display:flex;
 align-items:center;
-gap:12px;
 
-padding:15px;
+gap:16px;
 
-background:var(--color-dark);
-border-bottom:1px solid #e5e7eb;
+padding:14px 28px;
 
-}
+background:var(--dark-soft);
 
-/* CATEGORIAS */
-
-.menu-scroll{
-
-display:flex;
-gap:12px;
-
-overflow-x:auto;
-scrollbar-width:none;
-
-}
-
-.menu-scroll::-webkit-scrollbar{
-display:none;
-}
-
-.menu-scroll button{
-
-white-space:nowrap;
-flex-shrink:0;
-
-background:var(--color-blue);
-color:#fff;
-
-border:none;
-
-padding:10px 18px;
-
-border-radius:6px;
-
-cursor:pointer;
-
-font-size:14px;
-
-transition:all .25s ease;
-
-}
-
-.menu-scroll button:hover{
-
-background:var(--color-blue-glow);
-transform:translateY(-1px);
+border-bottom:1px solid #1e293b;
 
 }
 
@@ -218,7 +246,7 @@ transform:translateY(-1px);
 
 display:flex;
 align-items:center;
-gap:8px;
+gap:10px;
 
 }
 
@@ -227,9 +255,9 @@ gap:8px;
 background:none;
 border:none;
 
-color:#fff;
-font-size:18px;
+color:white;
 
+font-size:18px;
 cursor:pointer;
 
 }
@@ -248,86 +276,138 @@ outline:none;
 
 font-size:14px;
 
-transition:all .3s ease;
+transition:.3s;
 
 }
 
-/* CARRITO ICONO */
-
-.cart-icon{
-
-display:flex;
-align-items:center;
-
-font-size:18px;
-
-color:#fff;
-
-cursor:pointer;
-
-}
-
-.cart-count{
-
-background:var(--color-red);
-color:#fff;
-
-border-radius:50%;
-
-padding:2px 6px;
-
-font-size:12px;
-
-margin-left:5px;
-
-transition:transform .2s ease;
-
-}
-
-.cart-count.bump{
-
-transform:scale(1.2);
-
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.menu{
-justify-content:space-between;
-}
+/* CATEGORIAS SCROLL */
 
 .menu-scroll{
-max-width:60%;
+
+display:flex;
+gap:10px;
+
+overflow-x:auto;
+scrollbar-width:none;
+
 }
 
-#searchInput{
+.menu-scroll::-webkit-scrollbar{
+display:none;
+}
 
-width:0;
-opacity:0;
+.menu-scroll button{
 
-padding:8px 0;
+white-space:nowrap;
 
 border:none;
 
+padding:9px 16px;
+
+border-radius:6px;
+
+background:var(--blue);
+color:white;
+
+font-size:14px;
+
+cursor:pointer;
+
+transition:.2s;
+
 }
 
-.nav-search.active #searchInput{
+.menu-scroll button:hover{
 
-width:160px;
-opacity:1;
-
-padding:8px 12px;
-
-border:1px solid #e5e7eb;
-
-}
+background:var(--blue-glow);
 
 }
 
 /* ==================================================
-   ================== CONTENEDOR ====================
+CATEGORIAS HOME
+================================================== */
+
+.categorias-home{
+
+padding:30px;
+
+max-width:1300px;
+margin:auto;
+
+}
+
+.categorias-home h2{
+
+margin-bottom:18px;
+
+}
+
+.categorias-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(160px,1fr));
+
+gap:16px;
+
+}
+
+.categorias-grid button{
+
+padding:18px;
+
+border:none;
+
+border-radius:10px;
+
+background:white;
+
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+
+font-size:16px;
+font-weight:600;
+
+cursor:pointer;
+
+transition:.2s;
+
+}
+
+.categorias-grid button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+}
+
+/* ==================================================
+DESTACADOS
+================================================== */
+
+.destacados{
+
+max-width:1300px;
+margin:auto;
+
+padding:30px;
+
+}
+
+.destacados-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(260px,1fr));
+
+gap:25px;
+
+}
+
+/* ==================================================
+CONTENEDOR
 ================================================== */
 
 .contenedor{
@@ -340,26 +420,27 @@ margin:auto;
 }
 
 /* ==================================================
-   ================== GRID PRODUCTOS ================
+GRID PRODUCTOS
 ================================================== */
 
 #productos{
 
 display:grid;
 
-grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+grid-template-columns:
+repeat(auto-fill,minmax(260px,1fr));
 
 gap:25px;
 
 }
 
 /* ==================================================
-   ===================== CARDS ======================
+CARDS PRODUCTO
 ================================================== */
 
 .card{
 
-background:#fff;
+background:white;
 
 border-radius:10px;
 
@@ -370,7 +451,7 @@ box-shadow:0 4px 12px rgba(0,0,0,.08);
 display:flex;
 flex-direction:column;
 
-transition:transform .2s ease,box-shadow .2s ease;
+transition:.2s;
 
 }
 
@@ -378,7 +459,7 @@ transition:transform .2s ease,box-shadow .2s ease;
 
 transform:translateY(-4px);
 
-box-shadow:0 10px 20px rgba(0,0,0,.12);
+box-shadow:0 12px 24px rgba(0,0,0,.15);
 
 }
 
@@ -410,8 +491,7 @@ object-fit:contain;
 
 .card h3{
 
-margin:0 0 10px;
-
+margin:0 0 8px;
 font-size:16px;
 
 }
@@ -419,15 +499,24 @@ font-size:16px;
 .card .precio{
 
 font-size:20px;
-font-weight:bold;
+font-weight:700;
 
-color:var(--color-blue);
+color:var(--blue);
 
-margin-top:8px;
+margin-top:6px;
 
 }
 
-/* BOTON AGREGAR */
+.card .stock{
+
+font-size:14px;
+color:#475569;
+
+margin-top:4px;
+
+}
+
+/* BOTON ADD */
 
 .btn-add{
 
@@ -441,11 +530,11 @@ border-radius:6px;
 
 background:linear-gradient(
 90deg,
-var(--color-blue),
-var(--color-blue-glow)
+var(--blue),
+var(--blue-glow)
 );
 
-color:#fff;
+color:white;
 
 font-weight:600;
 
@@ -464,7 +553,7 @@ box-shadow:0 6px 14px rgba(37,99,235,.3);
 }
 
 /* ==================================================
-   ===================== FOOTER =====================
+FOOTER
 ================================================== */
 
 .footer{
@@ -479,8 +568,42 @@ font-size:13px;
 
 color:#6b7280;
 
-background:#fff;
+background:white;
 
 border-top:1px solid #e5e7eb;
+
+}
+
+/* ==================================================
+RESPONSIVE
+================================================== */
+
+@media(max-width:768px){
+
+.header-main{
+
+flex-direction:column;
+gap:10px;
+
+}
+
+.nav-store{
+
+overflow-x:auto;
+
+}
+
+.menu{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+#searchInput{
+
+width:160px;
+
+}
 
 }
