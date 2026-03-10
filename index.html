@@ -1,63 +1,109 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <title>DarleXPC</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="stylesheet" href="./css/slider.css" />
+<head>
+<meta charset="UTF-8" />
+<title>DarleXPC</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="./css/slider.css" />
 
 </head>
 
 <body>
 
-  <header class="top">
-    <div class="logo">
-    <a href="index.html">
-      <h1>DarleXPC</h1>
-      <span>Tienda en línea de tecnología</span>
-    </a>
-    </div>
-  </header>
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
 
-    <!-- ================= NAV CATEGORIAS ================= -->
-<nav class="menu">
-
-  <!-- LADO IZQUIERDO FIJO -->
-<div class="cart-icon" id="btnAbrirCarrito">
-  🛒 <span class="cart-count">0</span>
+<div class="topbar-left">
+📞 098XXXXXXX | 📍 Envíos a todo Ecuador
 </div>
 
-    <div class="nav-search">
-      <button id="searchToggle" class="search-btn">🔍</button>
-      <input type="text" id="searchInput" placeholder="Buscar producto...">
-    </div>
-  </div>
+<div class="topbar-right">
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+<a href="#">WhatsApp</a>
+</div>
 
-  <!-- CATEGORIAS SCROLL -->
-  <div class="menu-scroll">
-    <button data-cat="todos">Todos</button>
-    <button data-cat="Laptops">Laptops</button>
-    <button data-cat="PCs">PCs</button>
-    <button data-cat="Componentes">Componentes</button>
-    <button data-cat="Accesorios">Accesorios</button>
-  </div>
+</div>
+<!-- =============== FIN TOPBAR ================= -->
+
+
+<!-- ================= HEADER ================= -->
+<header class="header-main">
+
+<div class="logo">
+<a href="index.html">
+<h1>DarleXPC</h1>
+<span>Tienda en línea de tecnología</span>
+</a>
+</div>
+
+<div class="header-actions">
+
+<div class="cart-icon" id="btnAbrirCarrito">
+🛒 <span class="cart-count">0</span>
+</div>
+
+</div>
+
+</header>
+<!-- =============== FIN HEADER ================= -->
+
+
+<!-- ================= NAV STORE ================= -->
+<nav class="nav-store">
+
+<a href="index.html">Home</a>
+<a href="#">Tienda</a>
+<a href="#">Categorías</a>
+<a href="#">Marcas</a>
+<a href="#">Contacto</a>
+<a href="#">Mi cuenta</a>
 
 </nav>
-  <!-- =============== FIN NAV ================= -->
+<!-- =============== FIN NAV STORE ================= -->
+
+
 <!-- ================= SLIDER PRINCIPAL ================= -->
 <section class="slider">
 
-  <div class="slider-track" id="slider-track">
-    <!-- Slides se cargan por JS -->
-  </div>
+<div class="slider-track" id="slider-track">
+<!-- Slides se cargan por JS -->
+</div>
 
-  <button id="prevSlide" class="slider-btn prev">&#10094;</button>
-  <button id="nextSlide" class="slider-btn next">&#10095;</button>
+<button id="prevSlide" class="slider-btn prev">&#10094;</button>
+<button id="nextSlide" class="slider-btn next">&#10095;</button>
 
 </section>
 <!-- =============== FIN SLIDER ================= -->
+
+
+<!-- ================= NAV CATALOGO ================= -->
+<nav class="menu">
+
+<div class="nav-search">
+<button id="searchToggle" class="search-btn">🔍</button>
+<input type="text" id="searchInput" placeholder="Buscar producto...">
+</div>
+
+<div class="menu-scroll">
+
+<button data-cat="todos">Todos</button>
+<button data-cat="Laptops">Laptops</button>
+<button data-cat="PCs">PCs</button>
+<button data-cat="Componentes">Componentes</button>
+<button data-cat="Accesorios">Accesorios</button>
+<button data-cat="Impresoras">🖨️ Impresoras</button>
+
+</div>
+
+</nav>
+<!-- =============== FIN NAV CATALOGO ================= -->
+
+
 <!-- ================= CATEGORIAS RAPIDAS ================= -->
 <section class="categorias-home">
 
@@ -66,16 +112,16 @@
 <div class="categorias-grid">
 
 <button data-cat="Laptops">💻 Laptops</button>
-
 <button data-cat="PCs">🖥 PCs</button>
-
 <button data-cat="Componentes">⚙ Componentes</button>
-
 <button data-cat="Accesorios">🎮 Accesorios</button>
+<button data-cat="Impresoras">🖨️ Impresoras</button>
 
 </div>
 
 </section>
+<!-- =============== FIN CATEGORIAS ================= -->
+
 
 <!-- ================= PRODUCTOS DESTACADOS ================= -->
 <section class="destacados">
@@ -83,49 +129,71 @@
 <h2>🔥 Productos destacados</h2>
 
 <div id="destacadosGrid" class="destacados-grid">
-
-<!-- JS puede insertar productos aquí luego -->
-
+<!-- JS puede insertar productos aquí -->
 </div>
 
 </section>
+<!-- =============== FIN DESTACADOS ================= -->
 
-  <main class="contenedor">
-    <section id="productos"></section>
-  </main>
 
-  <footer class="footer">
-    © 2026 DarleXPC — Tecnología confiable
-  </footer>
+<!-- ================= CATALOGO ================= -->
+<main class="contenedor">
 
-  <script src="js/core/cartCore.js"></script>
-  <script src="js/core/cartUI.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/slider.js"></script>
-  <script src="./js/nav.js"></script>
- <!-- =============== CARRITO DESPLEGABLE ================= -->
-  <!-- Overlay -->
+<section id="productos"></section>
+
+</main>
+<!-- =============== FIN CATALOGO ================= -->
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+© 2026 DarleXPC — Tecnología confiable
+</footer>
+<!-- =============== FIN FOOTER ================= -->
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="js/core/cartCore.js"></script>
+<script src="js/core/cartUI.js"></script>
+
+<script src="./js/app.js"></script>
+<script src="./js/slider.js"></script>
+<script src="./js/nav.js"></script>
+
+<!-- =============== FIN SCRIPTS ================= -->
+
+
+<!-- ================= CARRITO DESPLEGABLE ================= -->
+
 <div class="cart-overlay" id="cartOverlay"></div>
 
-<!-- Carrito lateral -->
 <aside class="cart-sidebar" id="cartSidebar">
-  <div class="cart-header">
-    <h2>Tu carrito</h2>
-    <button id="cerrarCarrito">✕</button>
-  </div>
 
-  <div class="cart-items" id="cartItems"></div>
+<div class="cart-header">
+<h2>Tu carrito</h2>
+<button id="cerrarCarrito">✕</button>
+</div>
 
-  <div class="cart-footer">
-    <p>Total: $<span id="cartTotal">0</span></p>
-    <button id="vaciarCarritoBtn" class="cart-clear">
-  Vaciar carrito
+<div class="cart-items" id="cartItems"></div>
+
+<div class="cart-footer">
+
+<p>Total: $<span id="cartTotal">0</span></p>
+
+<button id="vaciarCarritoBtn" class="cart-clear">
+Vaciar carrito
 </button>
+
 <button id="enviarPedidoBtn" class="btn-whatsapp">
-  Comprar por WhatsApp
+Comprar por WhatsApp
 </button>
-  </div>
+
+</div>
+
 </aside>
-  <!-- =============== FIN CARRITO DESPLEGABLE ================= -->
+
+<!-- =============== FIN CARRITO ================= -->
+
 </body>
 </html>
