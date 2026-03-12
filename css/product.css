@@ -173,7 +173,25 @@ body{
 .thumbs img:hover{
   border-color:#2563eb;
 }
+/* imagen principal controlada */
 
+.img-principal{
+width:100%;
+max-height:420px;
+background:#f8fafc;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+#imgGrande{
+width:100%;
+height:100%;
+object-fit:contain;
+max-height:420px;
+}
 
 /* ==================================================
 ======================= INFO ========================
