@@ -1,337 +1,254 @@
 /* ==================================================
-RESET BASICO
+====================== BASE =========================
 ================================================== */
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
+  box-sizing:border-box;
 }
 
 body{
-background:#f5f7fb;
-color:#111;
+  margin:0;
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:#f1f5f9;
+  color:#111827;
+}
+
+.contenedor{
+  padding:30px;
+  max-width:1200px;
+  margin:auto;
 }
 
 
 /* ==================================================
-HEADER
+====================== HEADER =======================
 ================================================== */
 
 .top{
-
-background:#0f172a;
-color:white;
-
-padding:18px 40px;
-
-display:flex;
-align-items:center;
-justify-content:space-between;
-
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,0.95) 0%,
+    rgba(248,250,252,0.9) 100%
+  );
+  backdrop-filter:blur(6px);
+  padding:28px 32px;
+  border-bottom:1px solid rgba(15,23,42,0.08);
+  position:relative;
+  z-index:30;
 }
 
-.logo a{
-text-decoration:none;
-color:white;
+.top::after{
+  content:"";
+  position:absolute;
+  bottom:-8px;
+  left:0;
+  width:100%;
+  height:8px;
+  background:linear-gradient(to bottom,rgba(15,23,42,0.08),transparent);
+  pointer-events:none;
+}
+
+.top::before{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:4px;
+  background:linear-gradient(90deg,#0ea5e9 0%,#06b6d4 40%,#0f172a 100%);
 }
 
 .logo h1{
-font-size:24px;
+  margin:0;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:1px;
+  color:#0f172a;
 }
 
 .logo span{
-font-size:13px;
-opacity:.8;
+  display:block;
+  margin-top:4px;
+  font-size:13px;
+  color:#64748b;
+}
+
+.logo a{
+  text-decoration:none;
+  color:inherit;
 }
 
 
 /* ==================================================
-NAV
+====================== NAVBAR =======================
 ================================================== */
 
 .menu{
-
-background:white;
-
-padding:12px 40px;
-
-border-bottom:1px solid #e5e7eb;
-
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+  background:#0f172a;
+  border-bottom:1px solid #e5e7eb;
 }
 
 .btn-volver{
-
-text-decoration:none;
-font-weight:600;
-
-color:#0b5cff;
-
+  display:inline-block;
+  text-decoration:none;
+  background:#2563eb;
+  color:#fff;
+  padding:10px 16px;
+  border-radius:6px;
+  font-weight:500;
 }
 
 
 /* ==================================================
-CONTENEDOR
+================== PRODUCTO DETALLE =================
 ================================================== */
 
-.contenedor{
+.producto-detalle{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:start;
+}
 
-max-width:1200px;
+/* MOBILE */
 
-margin:auto;
-
-padding:40px 20px;
-
+@media (max-width:900px){
+  .producto-detalle{
+    grid-template-columns:1fr;
+    gap:25px;
+  }
 }
 
 
 /* ==================================================
-LAYOUT PRODUCTO
+====================== GALERIA ======================
 ================================================== */
 
-.producto-layout{
+.galeria{
+  width:100%;
+}
 
-display:grid;
+.img-principal{
+  width:100%;
+  max-height:420px;
+  background:#f8fafc;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
 
-grid-template-columns: 1fr 1fr;
+.img-principal img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
 
-gap:40px;
 
-align-items:start;
+/* THUMBNAILS */
 
+.thumbs{
+  display:flex;
+  gap:10px;
+  margin-top:12px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.thumbs img{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+  border-radius:6px;
+  border:2px solid transparent;
+  cursor:pointer;
+  background:#ffffff;
+}
+
+.thumbs img:hover{
+  border-color:#2563eb;
 }
 
 
 /* ==================================================
-GALERIA
+======================= INFO ========================
 ================================================== */
 
-.product-gallery{
-
-display:flex;
-
-flex-direction:column;
-
-gap:14px;
-
+.info h2{
+  margin-top:0;
+  font-size:26px;
 }
 
-/* imagen principal */
-
-.product-main-img{
-
-background:white;
-
-border-radius:10px;
-
-border:1px solid #e5e7eb;
-
-padding:20px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
+.precio{
+  font-size:28px;
+  color:#16a34a;
+  font-weight:bold;
+  margin:10px 0;
 }
 
-.product-main-img img{
-
-width:100%;
-
-max-height:420px;
-
-object-fit:contain;
-
-}
-
-/* miniaturas */
-
-.product-thumbs{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(70px,1fr));
-
-gap:10px;
-
-}
-
-.product-thumbs img{
-
-width:100%;
-
-height:70px;
-
-object-fit:contain;
-
-background:white;
-
-border-radius:6px;
-
-border:1px solid #e5e7eb;
-
-cursor:pointer;
-
-transition:.2s;
-
-}
-
-.product-thumbs img:hover{
-
-border-color:#0b5cff;
-
-transform:scale(1.05);
-
+.descripcion{
+  color:#475569;
+  margin-bottom:20px;
+  line-height:1.5;
 }
 
 
 /* ==================================================
-INFO PRODUCTO
+==================== TABLA DATOS ====================
 ================================================== */
 
-.product-info{
-
-display:flex;
-
-flex-direction:column;
-
-gap:14px;
-
+.tabla{
+  width:100%;
+  border-collapse:collapse;
+  margin:20px 0;
 }
 
-.product-title{
-
-font-size:26px;
-
-font-weight:700;
-
-color:#0f172a;
-
+.tabla td{
+  padding:10px;
+  border-bottom:1px solid #e5e7eb;
 }
 
-.product-price{
-
-font-size:30px;
-
-font-weight:800;
-
-color:#16a34a;
-
+.tabla td:first-child{
+  font-weight:600;
+  color:#374151;
 }
 
-.product-desc{
 
-font-size:15px;
-
-color:#475569;
-
-line-height:1.6;
-
-}
-
-.product-actions{
-
-display:flex;
-
-gap:10px;
-
-margin-top:10px;
-
-}
-
-/* boton carrito */
+/* ==================================================
+===================== BOTONES =======================
+================================================== */
 
 .btn-add{
-
-background:#0b5cff;
-
-color:white;
-
-border:none;
-
-padding:14px 20px;
-
-border-radius:8px;
-
-font-weight:700;
-
-cursor:pointer;
-
-transition:.2s;
-
+  margin-top:15px;
+  padding:12px 18px;
+  border:none;
+  border-radius:6px;
+  background:#0b5cff;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
 }
 
 .btn-add:hover{
-
-background:#0947c7;
-
-}
-
-/* boton whatsapp */
-
-.btn-buy{
-
-background:#25D366;
-
-color:white;
-
-border:none;
-
-padding:14px 20px;
-
-border-radius:8px;
-
-font-weight:700;
-
-cursor:pointer;
-
-}
-
-.btn-buy:hover{
-
-background:#1ebe5d;
-
+  background:#0947c7;
 }
 
 
 /* ==================================================
-FOOTER
+====================== FOOTER =======================
 ================================================== */
 
 .footer{
-
-margin-top:60px;
-
-padding:30px;
-
-text-align:center;
-
-background:#0f172a;
-
-color:white;
-
-font-size:14px;
-
-}
-
-
-/* ==================================================
-RESPONSIVE
-================================================== */
-
-@media (max-width:900px){
-
-.producto-layout{
-
-grid-template-columns:1fr;
-
-}
-
-.product-main-img img{
-
-max-height:320px;
-
-}
-
+  margin-top:40px;
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+  color:#6b7280;
+  background:#ffffff;
+  border-top:1px solid #e5e7eb;
 }
