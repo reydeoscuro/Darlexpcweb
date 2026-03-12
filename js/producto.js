@@ -12,17 +12,17 @@ if (!id) {
   throw new Error("ID undefined");
 }
 
-// 3️⃣ URL de la API
+// 3️⃣ API
 const URL = "https://darlex-api.david-villegas6991.workers.dev/";
 
-// 4️⃣ traer datos
+// 4️⃣ fetch
 fetch(URL)
   .then(res => res.json())
   .then(data => {
 
     console.log("Productos recibidos:", data);
 
-    // 5️⃣ buscar producto por SN
+    // buscar producto
     const p = data.find(item => item.SN === id);
 
     if (!p) {
@@ -30,38 +30,65 @@ fetch(URL)
       return;
     }
 
-    // 6️⃣ galería
+    // galería
     const imagenes = p.IMAGENES
       ? p.IMAGENES.split(",").map(img => `
           <img src="${img.trim()}" class="thumb">
         `).join("")
       : "";
 
-    // 7️⃣ pintar HTML
+    // HTML
     document.getElementById("detalle").innerHTML = `
       <div class="producto-detalle">
 
         <div class="galeria">
-          <img src="${p["IMAGEN"]}" id="imgGrande">
-          <div class="thumbs">${imagenes}</div>
+
+          <div class="img-principal">
+            <img src="${p.IMAGEN}" id="imgGrande">
+          </div>
+
+          <div class="thumbs">
+            ${imagenes}
+          </div>
+
         </div>
 
         <div class="info">
+
           <h2>${p.NOMBRE}</h2>
+
           <p class="precio">$${p.PRECIO}</p>
 
-          <table>
-            <tr><td>Procesador</td><td>${p.PROCESADOR || "-"}</td></tr>
-            <tr><td>RAM</td><td>${p.RAM || "-"}</td></tr>
-            <tr><td>Almacenamiento</td><td>${p.ROM || "-"}</td></tr>
-            <tr><td>Gráficos</td><td>${p.GRAFICA || "-"}</td></tr>
+          <table class="tabla">
+
+            <tr>
+              <td>Procesador</td>
+              <td>${p.PROCESADOR || "-"}</td>
+            </tr>
+
+            <tr>
+              <td>RAM</td>
+              <td>${p.RAM || "-"}</td>
+            </tr>
+
+            <tr>
+              <td>Almacenamiento</td>
+              <td>${p.ROM || "-"}</td>
+            </tr>
+
+            <tr>
+              <td>Gráficos</td>
+              <td>${p.GRAFICA || "-"}</td>
+            </tr>
+
           </table>
+
         </div>
 
       </div>
     `;
 
-    // 8️⃣ click en miniaturas
+    // cambiar imagen principal
     document.querySelectorAll(".thumb").forEach(img => {
       img.addEventListener("click", () => {
         document.getElementById("imgGrande").src = img.src;
@@ -70,4 +97,3 @@ fetch(URL)
 
   })
   .catch(err => console.error("ERROR PRODUCTO:", err));
-
