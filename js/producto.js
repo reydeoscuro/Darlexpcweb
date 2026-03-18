@@ -108,3 +108,44 @@ fetch(URL)
 
   })
   .catch(err => console.error("ERROR PRODUCTO:", err));
+function inicializarAccionesProducto(p) {
+
+  // ================================
+  // AGREGAR AL CARRITO
+  // ================================
+  const btnAgregar = document.getElementById("btnAgregar");
+
+  if (btnAgregar) {
+    btnAgregar.addEventListener("click", () => {
+
+      const producto = {
+        id: p.SN,
+        nombre: p.NOMBRE,
+        precio: p.PRECIO,
+        imagen: p.IMAGEN
+      };
+
+      agregarAlCarrito(producto);
+    });
+  }
+
+
+  // ================================
+  // WHATSAPP
+  // ================================
+  const btnComprar = document.getElementById("btnComprar");
+
+  if (btnComprar) {
+    btnComprar.addEventListener("click", () => {
+
+      const mensaje = `Hola, estoy interesado en este producto:%0A%0A${p.NOMBRE}%0APrecio: $${p.PRECIO}`;
+
+      const telefono = "593980526438";
+
+      const url = `https://wa.me/${telefono}?text=${mensaje}`;
+
+      window.open(url, "_blank");
+    });
+  }
+
+}
