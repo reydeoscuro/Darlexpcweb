@@ -59,6 +59,17 @@ fetch(URL)
 
           <p class="precio">$${p.PRECIO}</p>
 
+            <div class="acciones">
+
+    <button class="btn-add" id="btnAgregar">
+      🛒 Agregar al carrito
+    </button>
+
+    <button class="btn-whatsapp" id="btnComprar">
+      💬 Comprar por WhatsApp
+    </button>
+
+  </div>
           <table class="tabla">
 
             <tr>
