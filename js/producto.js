@@ -149,3 +149,9 @@ function inicializarAccionesProducto(p) {
   }
 
 }
+// ================================
+// INICIALIZAR CARRITO
+// ================================
+if (typeof initCartUI === "function") {
+  initCartUI();
+}
