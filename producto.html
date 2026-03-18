@@ -40,9 +40,30 @@
   </footer>
 
   <!-- JS -->
-  <script src="./js/producto.js"></script>
-  <script src="js/core/cartCore.js"></script>
-  <script src="js/core/cartUI.js"></script>
+<script src="js/cartCore.js"></script>
+<script src="js/cartUI.js"></script>
+<script src="js/producto.js"></script>
+
+  <!-- ========================= -->
+<!-- CARRITO -->
+<!-- ========================= -->
+
+<button id="btnCart" class="btn-cart">
+  🛒 <span id="cartCount">0</span>
+</button>
+
+<div id="cartOverlay" class="cart-overlay"></div>
+
+<div id="cartSidebar" class="cart-sidebar">
+  <h2>Carrito</h2>
+
+  <div id="cartItems"></div>
+
+  <div class="cart-footer">
+    <p>Total: $<span id="cartTotal">0</span></p>
+    <button id="btnWhatsapp">Comprar por WhatsApp</button>
+  </div>
+</div>
 
 </body>
 </html>
