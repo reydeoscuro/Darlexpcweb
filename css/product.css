@@ -94,6 +94,7 @@ HEADER ACTIONS (CARRITO)
 .header-actions{
   display:flex;
   align-items:center;
+  margin-left:auto;
 }
 
 .cart-icon{
