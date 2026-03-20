@@ -39,6 +39,46 @@ fetch(URL)
 
     // HTML
     document.getElementById("detalle").innerHTML = `
+// ============================
+// BOTONES ACCIÓN PRODUCTO
+// ============================
+
+const btnAdd = document.getElementById("btnAgregarCarrito");
+const btnWsp = document.getElementById("btnComprarWhatsapp");
+
+// 🛒 AGREGAR AL CARRITO
+if (btnAdd) {
+  btnAdd.addEventListener("click", () => {
+
+    const producto = {
+      id: p.SN,
+      nombre: p.NOMBRE,
+      precio: p.PRECIO,
+      imagen: p.IMAGEN
+    };
+
+    agregarAlCarrito(producto);
+  });
+}
+
+// 📲 WHATSAPP DIRECTO
+if (btnWsp) {
+  btnWsp.addEventListener("click", () => {
+
+    const mensaje = `
+Hola, estoy interesado en este producto:
+
+${p.NOMBRE}
+Precio: $${p.PRECIO}
+    `.trim();
+
+    const telefono = "593980526438";
+    const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+
+    window.open(url, "_blank");
+  });
+}
+    
       <div class="producto-detalle">
 
         <div class="galeria">
