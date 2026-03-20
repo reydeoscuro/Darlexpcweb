@@ -63,6 +63,10 @@ body{
   height:4px;
   background:linear-gradient(90deg,#0ea5e9 0%,#06b6d4 40%,#0f172a 100%);
 }
+.logo{
+  display:flex;
+  flex-direction:column;
+}
 
 .logo h1{
   margin:0;
@@ -83,6 +87,7 @@ body{
   text-decoration:none;
   color:inherit;
 }
+
 /* =========================
 HEADER ACTIONS (CARRITO)
 ========================= */
