@@ -84,7 +84,16 @@ body{
 }
 
 .logo a{
-  display:inline-block;
+  text-decoration:none !important;
+  color:inherit;
+}
+
+.logo a:hover,
+.logo a:focus,
+.logo a:active,
+.logo a:visited{
+  text-decoration:none !important;
+  color:inherit;
 }
 
 /* =========================
