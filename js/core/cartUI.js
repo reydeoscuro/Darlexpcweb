@@ -1,7 +1,30 @@
 /* ================================
    CONTADOR DEL CARRITO
 ================================ */
+function initCartUI() {
 
+  const btnCart = document.getElementById("btnCart");
+  const overlay = document.getElementById("cartOverlay");
+  const sidebar = document.getElementById("cartSidebar");
+
+  if (!btnCart || !overlay || !sidebar) {
+    console.warn("Carrito UI: elementos no encontrados");
+    return;
+  }
+
+  // abrir carrito
+  btnCart.addEventListener("click", () => {
+    sidebar.classList.add("open");
+    overlay.classList.add("active");
+  });
+
+  // cerrar carrito
+  overlay.addEventListener("click", () => {
+    sidebar.classList.remove("open");
+    overlay.classList.remove("active");
+  });
+
+}
 function actualizarContador() {
   const contador = document.querySelector(".cart-count");
   if (!contador) return;
