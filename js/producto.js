@@ -22,43 +22,88 @@ const URL = "https://darlex-api.david-villegas6991.workers.dev/";
 // 3. FETCH PRODUCTO
 // ================================
 fetch(URL)
-  .then(res => res.json())
-  .then(data => {
-
+  .then((res) => res.json())
+  .then((data) => {
     console.log("Productos recibidos:", data);
 
-    const p = data.find(item => item.SN === id);
+    const p = data.find((item) => item.SN === id);
 
     if (!p) {
-      document.getElementById("detalle").innerHTML = "<p>Producto no encontrado</p>";
+      document.getElementById("detalle").innerHTML =
+        "<p>Producto no encontrado</p>";
       return;
     }
 
     renderProducto(p);
     inicializarEventos(p);
-
   })
-  .catch(err => console.error("ERROR PRODUCTO:", err));
-
+  .catch((err) => console.error("ERROR PRODUCTO:", err));
 
 // ================================
 // 4. RENDER HTML
 // ================================
 function renderProducto(p) {
+  // =========================
+  // FUNCION OPTIMIZADORA
+  // =========================
+  const optimizarImagen = (url, size = 800) => {
+    if (!url) return "";
 
+    url = url.trim();
+
+    // Cloudinary detect
+    if (url.includes("cloudinary")) {
+      return url.replace("/upload/", `/upload/f_auto,q_auto,w_${size}/`);
+    }
+
+    // fallback (no rompe nada)
+    return url;
+  };
+
+  // =========================
+  // IMAGEN PRINCIPAL
+  // =========================
+  const imagenPrincipal = optimizarImagen(p.IMAGEN, 800);
+
+  // =========================
+  // THUMBNAILS
+  // =========================
   const imagenes = p.IMAGENES
-    ? p.IMAGENES.split(",").map(img => `
-        <img src="${img.trim()}" class="thumb">
-      `).join("")
+    ? p.IMAGENES.split(",")
+        .map((img) => {
+          const url = optimizarImagen(img, 150);
+
+          return `
+          <img 
+            src="${url}" 
+            class="thumb"
+            loading="lazy"
+            decoding="async"
+            width="70"
+            height="70"
+          >
+        `;
+        })
+        .join("")
     : "";
 
+  // =========================
+  // RENDER
+  // =========================
   document.getElementById("detalle").innerHTML = `
     <div class="producto-detalle">
 
       <div class="galeria">
 
         <div class="img-principal">
-          <img src="${p.IMAGEN}" id="imgGrande">
+          <img 
+            src="${imagenPrincipal}" 
+            id="imgGrande"
+            loading="eager"
+            decoding="async"
+            width="600"
+            height="400"
+          >
         </div>
 
         <div class="thumbs">
@@ -97,16 +142,14 @@ function renderProducto(p) {
   `;
 }
 
-
 // ================================
 // 5. EVENTOS POST-RENDER
 // ================================
 function inicializarEventos(p) {
-
   // ======================
   // GALERÍA
   // ======================
-  document.querySelectorAll(".thumb").forEach(img => {
+  document.querySelectorAll(".thumb").forEach((img) => {
     img.addEventListener("click", () => {
       document.getElementById("imgGrande").src = img.src;
     });
@@ -119,12 +162,11 @@ function inicializarEventos(p) {
 
   if (btnAgregar) {
     btnAgregar.addEventListener("click", () => {
-
       const producto = {
         id: p.SN,
         nombre: p.NOMBRE,
         precio: p.PRECIO,
-        imagen: p.IMAGEN
+        imagen: p.IMAGEN,
       };
 
       agregarAlCarrito(producto);
@@ -140,7 +182,6 @@ function inicializarEventos(p) {
 
   if (btnComprar) {
     btnComprar.addEventListener("click", () => {
-
       const mensaje = `Hola, estoy interesado en este producto:%0A%0A${p.NOMBRE}%0APrecio: $${p.PRECIO}`;
 
       const telefono = "593980526438";
