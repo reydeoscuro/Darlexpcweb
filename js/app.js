@@ -11,7 +11,6 @@ const CACHE_KEY_PRODUCTOS = "cache_productos";
 const CACHE_TIME = 5 * 60 * 1000; // 5 minutos
 
 async function cargarProductos() {
-
   const cache = localStorage.getItem(CACHE_KEY_PRODUCTOS);
 
   if (cache) {
@@ -34,19 +33,20 @@ async function cargarProductos() {
       return;
     }
 
-    const productosActivos = data.filter(p =>
-      p.ACTIVO &&
-      p.ACTIVO.trim().toUpperCase() === "SI"
+    const productosActivos = data.filter(
+      (p) => p.ACTIVO && p.ACTIVO.trim().toUpperCase() === "SI",
     );
 
-    localStorage.setItem(CACHE_KEY_PRODUCTOS, JSON.stringify({
-      timestamp: Date.now(),
-      data: productosActivos
-    }));
+    localStorage.setItem(
+      CACHE_KEY_PRODUCTOS,
+      JSON.stringify({
+        timestamp: Date.now(),
+        data: productosActivos,
+      }),
+    );
 
     renderProductos(productosActivos);
     activarFiltroCategorias();
-
   } catch (error) {
     console.error("ERROR FETCH:", error);
     mostrarMensajeError();
@@ -68,38 +68,60 @@ cargarProductos();
 ================================================== */
 
 function renderProductos(lista) {
-
   contenedor.innerHTML = "";
 
-  lista.forEach(p => {
+  const BATCH_SIZE = 12;
+  let index = 0;
 
-    const card = document.createElement("div");
-    card.className = "card producto-card";
-    card.setAttribute("data-cat", p.CATEGORIA);
+  function renderBatch() {
+    const fragment = document.createDocumentFragment();
 
-    card.innerHTML = `
-      <a href="producto.html?id=${p.SN}">
-        <div class="img-box">
-          <img src="${p.IMAGEN}" alt="${p.NOMBRE}">
+    const slice = lista.slice(index, index + BATCH_SIZE);
+
+    slice.forEach((p) => {
+      const card = document.createElement("div");
+      card.className = "card producto-card";
+      card.setAttribute("data-cat", p.CATEGORIA);
+
+      card.innerHTML = `
+        <a href="producto.html?id=${p.SN}">
+          <div class="img-box">
+            <img 
+              src="${p.IMAGEN}" 
+              alt="${p.NOMBRE}"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+        </a>
+
+        <h3 class="titulo">${p.NOMBRE}</h3>
+
+        <div class="card-info">
+          <span class="precio">$${p.PRECIO}</span>
+          <span class="stock">Stock: ${p.STOCK}</span>
         </div>
-      </a>
 
-      <h3 class="titulo">${p.NOMBRE}</h3>
+        <button class="btn-add" data-id="${p.SN}">
+          Agregar al carrito
+        </button>
+      `;
 
-      <div class="card-info">
-        <span class="precio">$${p.PRECIO}</span>
-        <span class="stock">Stock: ${p.STOCK}</span>
-      </div>
+      fragment.appendChild(card);
+    });
 
-      <button class="btn-add" data-id="${p.SN}">
-        Agregar al carrito
-      </button>
-    `;
+    contenedor.appendChild(fragment);
 
-    contenedor.appendChild(card);
-  });
+    index += BATCH_SIZE;
 
-  activarBotonesCarrito();
+    if (index < lista.length) {
+      setTimeout(renderBatch, 50); // render progresivo suave
+    } else {
+      activarBotonesCarrito();
+    }
+  }
+
+  renderBatch();
 }
 
 /* ==================================================
@@ -109,16 +131,15 @@ function renderProductos(lista) {
 function activarBotonesCarrito() {
   const botones = document.querySelectorAll(".btn-add");
 
-  botones.forEach(btn => {
+  botones.forEach((btn) => {
     btn.addEventListener("click", () => {
-
       const card = btn.closest(".producto-card");
 
       const producto = {
         id: btn.dataset.id,
         nombre: card.querySelector(".titulo").textContent,
         precio: card.querySelector(".precio").textContent,
-        imagen: card.querySelector("img")?.src
+        imagen: card.querySelector("img")?.src,
       };
 
       agregarAlCarrito(producto);
@@ -126,32 +147,25 @@ function activarBotonesCarrito() {
   });
 }
 
-                  
 /* ==================================================
    ================== FILTRO CATEGORÍAS ============
 ================================================== */
 
 function activarFiltroCategorias() {
-
   const botones = document.querySelectorAll(".menu-scroll button");
 
-  botones.forEach(btn => {
+  botones.forEach((btn) => {
     btn.addEventListener("click", () => {
-
       const categoria = btn.dataset.cat;
       const cards = document.querySelectorAll(".producto-card");
 
-      cards.forEach(card => {
-
+      cards.forEach((card) => {
         if (categoria === "todos") {
           card.style.display = "flex";
         } else {
-          card.style.display =
-            card.dataset.cat === categoria ? "flex" : "none";
+          card.style.display = card.dataset.cat === categoria ? "flex" : "none";
         }
-
       });
-
     });
   });
 }
