@@ -52,6 +52,14 @@ function agregarAlCarrito(producto) {
   // 💾 Guardamos el carrito actualizado en localStorage
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
+  /*
+  🆕 UX STATE:
+  Guardamos el ID del último producto agregado
+  👉 Se usa en cartUI para aplicar highlight temporal
+  👉 Se elimina automáticamente después del render
+*/
+  localStorage.setItem("lastAdded", producto.id);
+
   // 🔄 Actualizamos el contador visual del carrito
   // (Función definida en cartUI.js)
   actualizarContador();
