@@ -44,51 +44,25 @@ fetch(URL)
 // ================================
 function renderProducto(p) {
   // =========================
-  // FUNCION OPTIMIZADORA
+  // IMAGEN PRINCIPAL (SIN TOCAR CALIDAD)
   // =========================
-  const optimizarImagen = (url, size = 800, tipo = "general") => {
-    if (!url) return "";
-
-    url = url.trim();
-
-    // SOLO optimizar si es Cloudinary
-    if (url.includes("cloudinary")) {
-      // 👉 THUMBNAILS (agresivo permitido)
-      if (tipo === "thumb") {
-        return url.replace("/upload/", `/upload/f_auto,q_70,w_${size}/`);
-      }
-
-      // 👉 IMAGEN PRINCIPAL (calidad alta)
-      return url.replace("/upload/", `/upload/f_auto,q_90,w_${size}/`);
-    }
-
-    return url;
-  };
+  const imagenPrincipal = p.IMAGEN;
 
   // =========================
-  // IMAGEN PRINCIPAL
-  // =========================
-  const imagenPrincipal = optimizarImagen(p.IMAGEN, 1000, "principal");
-
-  // =========================
-  // THUMBNAILS
+  // THUMBNAILS (SIN COMPRESIÓN)
   // =========================
   const imagenes = p.IMAGENES
     ? p.IMAGENES.split(",")
-        .map((img) => {
-          const url = optimizarImagen(img, 150);
-
-          return `
-          <img 
-            src="${url}" 
-            class="thumb"
-            loading="lazy"
-            decoding="async"
-            width="70"
-            height="70"
-          >
-        `;
-        })
+        .map(
+          (img) => `
+        <img 
+          src="${img.trim()}" 
+          class="thumb"
+          loading="lazy"
+          decoding="async"
+        >
+      `,
+        )
         .join("")
     : "";
 
@@ -106,8 +80,6 @@ function renderProducto(p) {
             id="imgGrande"
             loading="eager"
             decoding="async"
-            width="600"
-            height="400"
           >
         </div>
 
@@ -146,7 +118,6 @@ function renderProducto(p) {
     </div>
   `;
 }
-
 // ================================
 // 5. EVENTOS POST-RENDER
 // ================================
