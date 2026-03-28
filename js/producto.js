@@ -46,17 +46,22 @@ function renderProducto(p) {
   // =========================
   // FUNCION OPTIMIZADORA
   // =========================
-  const optimizarImagen = (url, size = 800) => {
+  const optimizarImagen = (url, size = 800, tipo = "general") => {
     if (!url) return "";
 
     url = url.trim();
 
-    // Cloudinary detect
+    // SOLO optimizar si es Cloudinary
     if (url.includes("cloudinary")) {
-      return url.replace("/upload/", `/upload/f_auto,q_auto,w_${size}/`);
+      // 👉 THUMBNAILS (agresivo permitido)
+      if (tipo === "thumb") {
+        return url.replace("/upload/", `/upload/f_auto,q_70,w_${size}/`);
+      }
+
+      // 👉 IMAGEN PRINCIPAL (calidad alta)
+      return url.replace("/upload/", `/upload/f_auto,q_90,w_${size}/`);
     }
 
-    // fallback (no rompe nada)
     return url;
   };
 
