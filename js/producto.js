@@ -68,7 +68,7 @@ function renderProducto(p) {
   // =========================
   // IMAGEN PRINCIPAL
   // =========================
-  const imagenPrincipal = optimizarImagen(p.IMAGEN, 800);
+  const imagenPrincipal = optimizarImagen(p.IMAGEN, 1000, "principal");
 
   // =========================
   // THUMBNAILS
