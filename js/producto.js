@@ -19,26 +19,64 @@ if (!id) {
 const URL = "https://darlex-api.david-villegas6991.workers.dev/";
 
 // ================================
-// 3. FETCH PRODUCTO
+// 3. FETCH PRODUCTO (OPTIMIZADO CON CACHE)
 // ================================
-fetch(URL)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log("Productos recibidos:", data);
+const CACHE_KEY_PRODUCTOS = "cache_productos";
+const CACHE_TIME = 5 * 60 * 1000; // 5 min
 
-    const p = data.find((item) => item.SN === id);
+async function cargarProducto() {
+  try {
+    // =========================
+    // 1. CACHE INMEDIATO
+    // =========================
+    const cache = localStorage.getItem(CACHE_KEY_PRODUCTOS);
 
-    if (!p) {
+    if (cache) {
+      const parsed = JSON.parse(cache);
+
+      if (Date.now() - parsed.timestamp < CACHE_TIME) {
+        const p = parsed.data.find((item) => item.SN === id);
+
+        if (p) {
+          renderProducto(p);
+          inicializarEventos(p);
+        }
+      }
+    }
+
+    // =========================
+    // 2. FETCH REAL
+    // =========================
+    const res = await fetch(URL);
+    const data = await res.json();
+
+    const producto = data.find((item) => item.SN === id);
+
+    if (!producto) {
       document.getElementById("detalle").innerHTML =
         "<p>Producto no encontrado</p>";
       return;
     }
 
-    renderProducto(p);
-    inicializarEventos(p);
-  })
-  .catch((err) => console.error("ERROR PRODUCTO:", err));
+    // actualizar cache
+    localStorage.setItem(
+      CACHE_KEY_PRODUCTOS,
+      JSON.stringify({
+        timestamp: Date.now(),
+        data: data,
+      }),
+    );
 
+    // render final actualizado
+    renderProducto(producto);
+    inicializarEventos(producto);
+  } catch (err) {
+    console.error("ERROR PRODUCTO:", err);
+  }
+}
+
+// ejecutar
+cargarProducto();
 // ================================
 // 4. RENDER HTML
 // ================================
