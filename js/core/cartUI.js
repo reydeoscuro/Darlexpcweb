@@ -2,7 +2,6 @@
    CONTADOR DEL CARRITO
 ================================ */
 function initCartUI() {
-
   const btnCart = document.getElementById("btnCart");
   const overlay = document.getElementById("cartOverlay");
   const sidebar = document.getElementById("cartSidebar");
@@ -23,7 +22,6 @@ function initCartUI() {
     sidebar.classList.remove("open");
     overlay.classList.remove("active");
   });
-
 }
 function actualizarContador() {
   const contador = document.querySelector(".cart-count");
@@ -37,7 +35,6 @@ function actualizarContador() {
 
   contador.textContent = totalCantidad;
 }
-
 
 /* ================================
    MENSAJE CONFIRMACION
@@ -56,14 +53,13 @@ function mostrarConfirmacion() {
     padding: "12px 18px",
     borderRadius: "8px",
     boxShadow: "0 5px 15px rgba(0,0,0,0.2)",
-    zIndex: "9999"
+    zIndex: "9999",
   });
 
   document.body.appendChild(mensaje);
 
   setTimeout(() => mensaje.remove(), 2000);
 }
-
 
 /* ================================
    CARRITO DESPLEGABLE
@@ -91,7 +87,6 @@ function cerrarCarrito() {
   overlay.classList.remove("active");
 }
 
-
 /* ================================
    RENDER DEL CARRITO
 ================================ */
@@ -101,23 +96,35 @@ function renderizarCarrito() {
 
   const contenedor = document.getElementById("cartItems");
   const totalElemento = document.getElementById("cartTotal");
+  const lastAdded = localStorage.getItem("lastAdded");
 
   if (!contenedor || !totalElemento) return;
 
   contenedor.innerHTML = "";
   let total = 0;
 
-  carrito.forEach(item => {
-
+  carrito.forEach((item) => {
     const nombre = item.nombre || item.title || "Producto";
     const precio = Number(item.precio || item.price || 0);
     const cantidad = Number(item.cantidad || 1);
     const imagen = item.imagen || ""; // ← incisión mínima
-     
+
     total += precio * cantidad;
 
     const div = document.createElement("div");
     div.classList.add("cart-item");
+
+    /*
+  🆕 UX: Highlight del último producto agregado
+*/
+    if (item.id === lastAdded) {
+      div.classList.add("highlight-item");
+
+      setTimeout(() => {
+        div.classList.remove("highlight-item");
+        localStorage.removeItem("lastAdded");
+      }, 4000);
+    }
 
     div.innerHTML = `
       <div class="cart-item-img">
@@ -143,15 +150,15 @@ function renderizarCarrito() {
     div.querySelector(".cart-remove").addEventListener("click", () => {
       eliminarProducto(nombre);
     });
-// Botón +
-div.querySelector(".plus").addEventListener("click", () => {
-  cambiarCantidad(item.id, 1);
-});
+    // Botón +
+    div.querySelector(".plus").addEventListener("click", () => {
+      cambiarCantidad(item.id, 1);
+    });
 
-// Botón -
-div.querySelector(".minus").addEventListener("click", () => {
-  cambiarCantidad(item.id, -1);
-});
+    // Botón -
+    div.querySelector(".minus").addEventListener("click", () => {
+      cambiarCantidad(item.id, -1);
+    });
     contenedor.appendChild(div);
   });
 
@@ -161,22 +168,21 @@ div.querySelector(".minus").addEventListener("click", () => {
 function eliminarProducto(nombreProducto) {
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  carrito = carrito.filter(item => {
+  carrito = carrito.filter((item) => {
     const nombre = item.nombre || item.title || "Producto";
     return nombre !== nombreProducto;
   });
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
-   
-renderizarCarrito();
-actualizarContador();
+
+  renderizarCarrito();
+  actualizarContador();
 }
 
 function cambiarCantidad(idProducto, cambio) {
-
   let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  const producto = carrito.find(item => item.id === idProducto);
+  const producto = carrito.find((item) => item.id === idProducto);
 
   if (!producto) return;
 
@@ -184,7 +190,7 @@ function cambiarCantidad(idProducto, cambio) {
 
   // Si la cantidad baja a 0, eliminar producto
   if (producto.cantidad <= 0) {
-    carrito = carrito.filter(item => item.id !== idProducto);
+    carrito = carrito.filter((item) => item.id !== idProducto);
   }
 
   localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -200,7 +206,6 @@ function vaciarCarrito() {
   actualizarContador();
 }
 function enviarPedidoWhatsApp() {
-
   const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
   if (carrito.length === 0) {
@@ -210,15 +215,16 @@ function enviarPedidoWhatsApp() {
 
   let mensaje = "Hola, quiero realizar el siguiente pedido:%0A%0A";
 
-  carrito.forEach(item => {
-
+  carrito.forEach((item) => {
     mensaje += `• ${item.nombre}%0A`;
     mensaje += `Cantidad: ${item.cantidad}%0A`;
     mensaje += `Precio: $${item.precio}%0A%0A`;
-
   });
 
-  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+  const total = carrito.reduce(
+    (acc, item) => acc + item.precio * item.cantidad,
+    0,
+  );
 
   mensaje += `Total: $${total.toFixed(2)}`;
 
@@ -227,21 +233,19 @@ function enviarPedidoWhatsApp() {
   const url = `https://wa.me/${telefono}?text=${mensaje}`;
 
   window.open(url, "_blank");
-
 }
 /* ================================
    EVENTOS
 ================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
-
   actualizarContador();
 
   const btnAbrir = document.getElementById("btnAbrirCarrito");
   const btnCerrar = document.getElementById("cerrarCarrito");
   const overlay = document.getElementById("cartOverlay");
   const btnVaciar = document.getElementById("vaciarCarritoBtn");
-   const btnEnviar = document.getElementById("enviarPedidoBtn");
+  const btnEnviar = document.getElementById("enviarPedidoBtn");
 
   if (btnAbrir) {
     btnAbrir.addEventListener("click", (e) => {
@@ -257,9 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.addEventListener("click", cerrarCarrito);
   }
   if (btnVaciar) {
-  btnVaciar.addEventListener("click", vaciarCarrito);
+    btnVaciar.addEventListener("click", vaciarCarrito);
   }
   if (btnEnviar) {
-  btnEnviar.addEventListener("click", enviarPedidoWhatsApp);
+    btnEnviar.addEventListener("click", enviarPedidoWhatsApp);
   }
 });

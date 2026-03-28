@@ -69,12 +69,11 @@
 ================================ */
 
 #cerrarCarrito {
-
   width: 34px;
   height: 34px;
 
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   background: transparent;
 
   color: white;
@@ -93,8 +92,7 @@
 /* hover tipo botón físico */
 
 #cerrarCarrito:hover {
-
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   border-color: white;
   transform: rotate(90deg);
 }
@@ -102,9 +100,7 @@
 /* efecto click */
 
 #cerrarCarrito:active {
-
   transform: scale(0.92);
-
 }
 .cart-header button {
   background: none;
@@ -131,9 +127,20 @@
   background: #ffffff;
   margin-bottom: 14px;
   border: 1px solid #e5e7eb;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+/* =====================================
+   UX: Highlight producto agregado
+   Estado temporal visual del item
+===================================== */
+.cart-item.highlight-item {
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.55);
+  transform: scale(1.02);
+}
 .cart-item:hover {
   border-color: #0b5cff;
   box-shadow: 0 0 0 2px rgba(11, 92, 255, 0.08);
@@ -209,7 +216,9 @@
   cursor: pointer;
   background: linear-gradient(90deg, #0b5cff, #2563eb);
   color: white;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   box-shadow: 0 6px 20px rgba(11, 92, 255, 0.25);
 }
 
@@ -278,11 +287,10 @@
 ================================ */
 
 .btn-whatsapp {
-
   width: 100%;
   padding: 14px;
 
-  background-color: #25D366;
+  background-color: #25d366;
   color: white;
 
   border: none;
@@ -301,18 +309,14 @@
 /* hover */
 
 .btn-whatsapp:hover {
-
   background-color: #1ebe5d;
   transform: translateY(-1px);
-
 }
 
 /* cuando se presiona */
 
 .btn-whatsapp:active {
-
   transform: translateY(0px);
-
 }
 /* =========================================
    CARRITO RESPONSIVE MOBILE PATCH V2
@@ -320,7 +324,6 @@
 ========================================= */
 
 @media (max-width: 768px) {
-
   .cart-sidebar {
     width: 100%;
     right: -100%;
