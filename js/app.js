@@ -177,3 +177,125 @@ function activarFiltroCategorias() {
 document.addEventListener("DOMContentLoaded", () => {
   actualizarContador();
 });
+
+// ================= PROMOCIONES (COMPATIBLE CON TU JSON) =================
+
+const promosContainer = document.getElementById("promosContainer");
+
+function renderPromos(lista) {
+  if (!promosContainer) return;
+
+  // 👉 solo productos activos
+  const activos = lista.filter((p) => p.ACTIVO === "SI");
+
+  // 👉 tomamos los primeros 6 (luego puedes mejorar esto)
+  const promos = activos.slice(0, 6);
+
+  const fragment = document.createDocumentFragment();
+
+  promos.forEach((p) => {
+    const card = document.createElement("div");
+    card.className = "promo-card";
+
+    card.innerHTML = `
+      <div class="promo-img">
+        <img src="${p.IMAGEN}" alt="${p.NOMBRE}">
+      </div>
+
+      <div class="promo-body">
+        <h3 class="promo-title">${p.NOMBRE}</h3>
+
+        <p class="promo-specs">
+          ${p.PROCESADOR || ""} · ${p.RAM || ""} · ${p.ROM || ""}
+        </p>
+
+        <div class="promo-price">
+          <span class="price">$${p.PRECIO}</span>
+        </div>
+
+        <a href="producto.html?id=${p.SN}" class="btn-ver">
+          Ver producto
+        </a>
+      </div>
+    `;
+
+    fragment.appendChild(card);
+  });
+
+  promosContainer.appendChild(fragment);
+}
+// ================= MOTOR DE PROMOCIONES AUTO =================
+
+function getPromosAutomaticas(lista) {
+  const hoy = new Date();
+
+  // 👉 cambia cada semana
+  const semana = Math.floor(hoy.getTime() / (1000 * 60 * 60 * 24 * 7));
+
+  // 👉 filtramos productos válidos
+  const validos = lista.filter((p) => p.ACTIVO === "SI" && Number(p.STOCK) > 0);
+
+  // 👉 pseudo-random estable por semana
+  const seleccion = validos.filter((_, i) => (i + semana) % 3 === 0);
+
+  // 👉 máximo 6 promos
+  const promos = seleccion.slice(0, 6);
+
+  return promos.map((p) => {
+    const precio = Number(p.PRECIO);
+    let descuento = 0;
+
+    if (precio > 500) {
+      descuento = 40 + (semana % 10); // 40–49
+    } else if (precio > 100) {
+      descuento = 10 + (semana % 15); // 10–24
+    } else if (precio > 0) {
+      descuento = 1 + (semana % 2) * 1.5; // 1–2.5
+    }
+
+    const precioFinal = Math.max(precio - descuento, precio * 0.85); // no bajar más de 15%
+
+    return {
+      ...p,
+      PRECIO_ORIGINAL: precio,
+      PRECIO_PROMO: precioFinal.toFixed(2),
+      DESCUENTO: (precio - precioFinal).toFixed(2),
+    };
+  });
+}
+function renderPromos(lista) {
+  if (!promosContainer) return;
+
+  const promos = getPromosAutomaticas(lista);
+
+  promosContainer.innerHTML = promos
+    .map(
+      (p) => `
+    <div class="promo-card">
+
+      <div class="promo-img">
+        <img src="${p.IMAGEN}" alt="${p.NOMBRE}">
+      </div>
+
+      <div class="promo-body">
+        <h3>${p.NOMBRE}</h3>
+
+        <p class="promo-specs">
+          ${p.PROCESADOR || ""} · ${p.RAM || ""} · ${p.ROM || ""}
+        </p>
+
+        <div class="promo-price">
+          <span class="old">$${p.PRECIO_ORIGINAL}</span>
+          <span class="new">$${p.PRECIO_PROMO}</span>
+        </div>
+
+        <a href="producto.html?id=${p.SN}" class="btn-ver">
+          Ver producto
+        </a>
+      </div>
+
+    </div>
+  `,
+    )
+    .join("");
+}
