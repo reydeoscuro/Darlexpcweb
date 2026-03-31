@@ -1,199 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DarleXPC</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/slider.css" />
+    <link rel="stylesheet" href="./css/cart.css" />
+  </head>
+
+  <body>
+    <!-- ================= TOPBAR ================= -->
+    <div class="topbar">
+      <div class="topbar-left">📞 0980526438 | 📍 Envíos a todo Ecuador</div>
+
+      <div class="topbar-right">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+      </div>
+    </div>
+    <!-- =============== FIN TOPBAR ================= -->
+
+    <!-- ================= HEADER ================= -->
+    <header class="header-main">
+      <div class="logo">
+        <a href="index.html">
+          <h1>DarleXPC</h1>
+          <span>Tienda en línea de tecnología</span>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <div class="cart-icon" id="btnAbrirCarrito">
+          🛒 <span class="cart-count">0</span>
+        </div>
+      </div>
+    </header>
+    <!-- =============== FIN HEADER ================= -->
+
+    <!-- ================= NAV STORE ================= -->
+    <nav class="nav-store">
+      <a href="tienda.html">Tienda</a>
+      <a href="categorias.html">Categorías</a>
+      <a href="marcas.html">Marcas</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="cuenta.html">Mi cuenta</a>
+    </nav>
+    <!-- =============== FIN NAV STORE ================= -->
+
+    <!-- ================= SLIDER PRINCIPAL ================= -->
+    <section class="slider">
+      <div class="slider-track" id="slider-track">
+        <!-- Slides se cargan por JS -->
+      </div>
+
+      <button id="prevSlide" class="slider-btn prev">&#10094;</button>
+      <button id="nextSlide" class="slider-btn next">&#10095;</button>
+    </section>
+    <!-- =============== FIN SLIDER ================= -->
+
+    <!-- ================= NAV CATALOGO ================= -->
+    <nav class="menu">
+      <div class="nav-search">
+        <button id="searchToggle" class="search-btn">🔍</button>
+        <input type="text" id="searchInput" placeholder="Buscar producto..." />
+      </div>
+
+      <div class="menu-scroll">
+        <button data-cat="todos">Todos</button>
+        <button data-cat="Laptops">Laptops</button>
+        <button data-cat="PCs">PCs</button>
+        <button data-cat="Componentes">Componentes</button>
+        <button data-cat="Accesorios">Accesorios</button>
+        <button data-cat="Impresoras">🖨️ Impresoras</button>
+      </div>
+    </nav>
+    <!-- =============== FIN NAV CATALOGO ================= -->
+
+    <!-- ================= CATEGORIAS RAPIDAS ================= -->
+    <section class="categorias-home">
+      <h2>Categorías principales</h2>
+
+      <div class="categorias-grid">
+        <button data-cat="Laptops">💻 Laptops</button>
+        <button data-cat="PCs">🖥 PCs</button>
+        <button data-cat="Componentes">⚙ Componentes</button>
+        <button data-cat="Accesorios">🎮 Accesorios</button>
+        <button data-cat="Impresoras">🖨️ Impresoras</button>
+      </div>
+    </section>
+    <!-- =============== FIN CATEGORIAS ================= -->
+
+    <!-- ================= PRODUCTOS DESTACADOS ================= -->
+    <section class="destacados">
+      <h2>🔥 Productos destacados</h2>
+
+      <div id="destacadosGrid" class="destacados-grid">
+        <!-- JS puede insertar productos aquí -->
+      </div>
+    </section>
+    <!-- =============== FIN DESTACADOS ================= -->
 
-<head>
-<meta charset="UTF-8" />
-<title>DarleXPC</title>
+    <!-- ================= CATALOGO ================= -->
+    <main class="contenedor">
+      <section id="productos"></section>
+    </main>
+    <!-- =============== FIN CATALOGO ================= -->
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">© 2026 DarleXPC — Tecnología confiable</footer>
+    <!-- =============== FIN FOOTER ================= -->
 
-<link rel="stylesheet" href="./css/style.css" />
-<link rel="stylesheet" href="./css/slider.css" />
-<link rel="stylesheet" href="./css/cart.css" />
-  
-</head>
+    <!-- ================= SCRIPTS ================= -->
 
-<body>
+    <script src="js/core/cartCore.js"></script>
+    <script src="js/core/cartUI.js"></script>
 
-<!-- ================= TOPBAR ================= -->
-<div class="topbar">
+    <script src="./js/app.js"></script>
+    <script src="./js/slider.js"></script>
+    <script src="./js/nav.js"></script>
 
-<div class="topbar-left">
-📞 0980526438 | 📍 Envíos a todo Ecuador
-</div>
+    <!-- =============== FIN SCRIPTS ================= -->
 
-<div class="topbar-right">
-<a href="#">Facebook</a>
-<a href="#">Instagram</a>
-<a href="#">WhatsApp</a>
-</div>
+    <!-- ================= CARRITO DESPLEGABLE ================= -->
 
-</div>
-<!-- =============== FIN TOPBAR ================= -->
- 
-<!-- ================= HEADER ================= -->
-<header class="header-main">
+    <div class="cart-overlay" id="cartOverlay"></div>
 
-<div class="logo">
-<a href="index.html">
-<h1>DarleXPC</h1>
-<span>Tienda en línea de tecnología</span>
-</a>
-</div>
+    <aside class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h2>Tu carrito</h2>
+        <button id="cerrarCarrito">✕</button>
+      </div>
 
-<div class="header-actions">
+      <div class="cart-items" id="cartItems"></div>
 
-<div class="cart-icon" id="btnAbrirCarrito">
-🛒 <span class="cart-count">0</span>
-</div>
+      <div class="cart-footer">
+        <p>Total: $<span id="cartTotal">0</span></p>
 
-</div>
+        <button id="vaciarCarritoBtn" class="cart-clear">Vaciar carrito</button>
 
-</header>
-<!-- =============== FIN HEADER ================= -->
+        <button id="enviarPedidoBtn" class="btn-whatsapp">
+          Comprar por WhatsApp
+        </button>
+      </div>
+    </aside>
 
-
-<!-- ================= NAV STORE ================= -->
-<nav class="nav-store">
-
-<a href="index.html">Home</a>
-<a href="#">Tienda</a>
-<a href="#">Categorías</a>
-<a href="#">Marcas</a>
-<a href="#">Contacto</a>
-<a href="#">Mi cuenta</a>
-
-</nav>
-<!-- =============== FIN NAV STORE ================= -->
-
-
-<!-- ================= SLIDER PRINCIPAL ================= -->
-<section class="slider">
-
-<div class="slider-track" id="slider-track">
-<!-- Slides se cargan por JS -->
-</div>
-
-<button id="prevSlide" class="slider-btn prev">&#10094;</button>
-<button id="nextSlide" class="slider-btn next">&#10095;</button>
-
-</section>
-<!-- =============== FIN SLIDER ================= -->
-
-
-<!-- ================= NAV CATALOGO ================= -->
-<nav class="menu">
-
-<div class="nav-search">
-<button id="searchToggle" class="search-btn">🔍</button>
-<input type="text" id="searchInput" placeholder="Buscar producto...">
-</div>
-
-<div class="menu-scroll">
-
-<button data-cat="todos">Todos</button>
-<button data-cat="Laptops">Laptops</button>
-<button data-cat="PCs">PCs</button>
-<button data-cat="Componentes">Componentes</button>
-<button data-cat="Accesorios">Accesorios</button>
-<button data-cat="Impresoras">🖨️ Impresoras</button>
-
-</div>
-
-</nav>
-<!-- =============== FIN NAV CATALOGO ================= -->
-
-
-<!-- ================= CATEGORIAS RAPIDAS ================= -->
-<section class="categorias-home">
-
-<h2>Categorías principales</h2>
-
-<div class="categorias-grid">
-
-<button data-cat="Laptops">💻 Laptops</button>
-<button data-cat="PCs">🖥 PCs</button>
-<button data-cat="Componentes">⚙ Componentes</button>
-<button data-cat="Accesorios">🎮 Accesorios</button>
-<button data-cat="Impresoras">🖨️ Impresoras</button>
-
-</div>
-
-</section>
-<!-- =============== FIN CATEGORIAS ================= -->
-
-
-<!-- ================= PRODUCTOS DESTACADOS ================= -->
-<section class="destacados">
-
-<h2>🔥 Productos destacados</h2>
-
-<div id="destacadosGrid" class="destacados-grid">
-<!-- JS puede insertar productos aquí -->
-</div>
-
-</section>
-<!-- =============== FIN DESTACADOS ================= -->
-
-
-<!-- ================= CATALOGO ================= -->
-<main class="contenedor">
-
-<section id="productos"></section>
-
-</main>
-<!-- =============== FIN CATALOGO ================= -->
-
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-© 2026 DarleXPC — Tecnología confiable
-</footer>
-<!-- =============== FIN FOOTER ================= -->
-
-
-<!-- ================= SCRIPTS ================= -->
-
-<script src="js/core/cartCore.js"></script>
-<script src="js/core/cartUI.js"></script>
-
-<script src="./js/app.js"></script>
-<script src="./js/slider.js"></script>
-<script src="./js/nav.js"></script>
-
-<!-- =============== FIN SCRIPTS ================= -->
-
-
-<!-- ================= CARRITO DESPLEGABLE ================= -->
-
-<div class="cart-overlay" id="cartOverlay"></div>
-
-<aside class="cart-sidebar" id="cartSidebar">
-
-<div class="cart-header">
-<h2>Tu carrito</h2>
-<button id="cerrarCarrito">✕</button>
-</div>
-
-<div class="cart-items" id="cartItems"></div>
-
-<div class="cart-footer">
-
-<p>Total: $<span id="cartTotal">0</span></p>
-
-<button id="vaciarCarritoBtn" class="cart-clear">
-Vaciar carrito
-</button>
-
-<button id="enviarPedidoBtn" class="btn-whatsapp">
-Comprar por WhatsApp
-</button>
-
-</div>
-
-</aside>
-
-<!-- =============== FIN CARRITO ================= -->
-
-</body>
+    <!-- =============== FIN CARRITO ================= -->
+  </body>
 </html>
