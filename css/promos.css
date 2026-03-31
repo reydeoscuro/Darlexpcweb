@@ -158,3 +158,113 @@ PROMO CARDS PRO — DARLEXPC
   transform: translateY(-1px);
   box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
 }
+
+/* ================= PROMOS SECTION ================= */
+
+.promos {
+  padding: 40px 20px;
+}
+
+.promos h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* ================= GRID ================= */
+
+#promosContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ================= CARD ================= */
+
+.promo-card {
+  background: #0b1220;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+/* glow Darlex */
+.promo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(11, 92, 255, 0.25);
+  border-color: #0b5cff;
+}
+
+/* ================= IMAGE ================= */
+
+.promo-img {
+  background: #020617;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  padding: 10px;
+}
+
+.promo-img img {
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* ================= BODY ================= */
+
+.promo-body {
+  padding: 15px;
+}
+
+.promo-body h3 {
+  font-size: 15px;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+
+.promo-specs {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+/* ================= PRICE ================= */
+
+.promo-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.promo-price .old {
+  text-decoration: line-through;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.promo-price .new {
+  color: #16a34a;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ================= BUTTON ================= */
+
+.btn-ver {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  background: #0b5cff;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.btn-ver:hover {
+  background: #2563eb;
+}
