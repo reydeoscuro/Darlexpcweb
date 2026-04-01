@@ -1,3 +1,4 @@
+window.PRODUCTOS_DB = [];
 console.log("APP.JS V2 CARGADO");
 
 const URL = "https://darlex-api.david-villegas6991.workers.dev/";
@@ -45,7 +46,8 @@ async function cargarProductos() {
       }),
     );
 
-    renderProductos(productosActivos);
+    window.PRODUCTOS_DB = productosActivos;
+    renderProductos(window.PRODUCTOS_DB);
     activarFiltroCategorias();
   } catch (error) {
     console.error("ERROR FETCH:", error);
