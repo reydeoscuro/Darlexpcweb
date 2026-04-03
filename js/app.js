@@ -18,8 +18,12 @@ async function cargarProductos() {
     const parsed = JSON.parse(cache);
 
     if (Date.now() - parsed.timestamp < CACHE_TIME) {
-      renderProductos(parsed.data);
+      PRODUCTOS_DB = parsed.data;
+
+      renderProductos(PRODUCTOS_DB);
+      renderPromos(PRODUCTOS_DB); // 🔥 AQUI
       activarFiltroCategorias();
+
       return;
     }
   }
@@ -48,6 +52,7 @@ async function cargarProductos() {
 
     PRODUCTOS_DB = productosActivos;
     renderProductos(PRODUCTOS_DB);
+    renderPromos(PRODUCTOS_DB); // 🔥 AQUI
     activarFiltroCategorias();
   } catch (error) {
     console.error("ERROR FETCH:", error);
@@ -182,50 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ================= PROMOCIONES (COMPATIBLE CON TU JSON) =================
 
-const promosContainer = document.getElementById("promosContainer");
+const promosContainer = document.getElementById("promosGrid");
 
-function renderPromos(lista) {
-  if (!promosContainer) return;
-
-  // 👉 solo productos activos
-  const activos = lista.filter((p) => p.ACTIVO === "SI");
-
-  // 👉 tomamos los primeros 6 (luego puedes mejorar esto)
-  const promos = activos.slice(0, 6);
-
-  const fragment = document.createDocumentFragment();
-
-  promos.forEach((p) => {
-    const card = document.createElement("div");
-    card.className = "promo-card";
-
-    card.innerHTML = `
-      <div class="promo-img">
-        <img src="${p.IMAGEN}" alt="${p.NOMBRE}">
-      </div>
-
-      <div class="promo-body">
-        <h3 class="promo-title">${p.NOMBRE}</h3>
-
-        <p class="promo-specs">
-          ${p.PROCESADOR || ""} · ${p.RAM || ""} · ${p.ROM || ""}
-        </p>
-
-        <div class="promo-price">
-          <span class="price">$${p.PRECIO}</span>
-        </div>
-
-        <a href="producto.html?id=${p.SN}" class="btn-ver">
-          Ver producto
-        </a>
-      </div>
-    `;
-
-    fragment.appendChild(card);
-  });
-
-  promosContainer.appendChild(fragment);
-}
 // ================= MOTOR DE PROMOCIONES AUTO =================
 
 function getPromosAutomaticas(lista) {
