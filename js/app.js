@@ -3,7 +3,7 @@ window.PRODUCTOS_DB = [];
 console.log("APP.JS V2 CARGADO");
 
 const URL = "https://darlex-api.david-villegas6991.workers.dev/";
-const contenedor = document.getElementById("productos");
+const contenedor = document.getElementById("productos") || null;
 
 /* ==================================================
    ================== FETCH PRODUCTOS ===============
@@ -23,7 +23,7 @@ async function cargarProductos() {
 
       renderProductos(PRODUCTOS_DB);
       renderPromos(PRODUCTOS_DB); // 🔥 AQUI
-      renderUltimosProductos(PRODUCTOS_DB); 
+      renderUltimosProductos(PRODUCTOS_DB);
       activarFiltroCategorias();
       // esperar a que el DOM pinte
       setTimeout(() => {
@@ -78,8 +78,8 @@ cargarProductos();
 /* ==================================================
    ================== RENDER PRODUCTOS ==============
 ================================================== */
-
 function renderProductos(lista) {
+  if (!contenedor) return;
   contenedor.innerHTML = "";
 
   const BATCH_SIZE = 12;
