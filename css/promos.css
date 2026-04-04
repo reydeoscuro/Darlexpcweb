@@ -336,3 +336,17 @@ PROMO CARDS PRO — DARLEXPC
 .promo-btn.next {
   right: 10px;
 }
+/* RESPONSIVE */
+/* Tablet */
+@media (max-width: 1024px) {
+  .promos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+  .promos-grid {
+    grid-template-columns: 1fr;
+  }
+}
