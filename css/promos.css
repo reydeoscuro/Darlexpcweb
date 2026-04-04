@@ -1,6 +1,12 @@
 /* =========================================
 PROMO CARDS PRO — DARLEXPC
 ========================================= */
+.contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
 .promos-wrapper {
   overflow: hidden;
   width: 100%;
@@ -17,8 +23,9 @@ PROMO CARDS PRO — DARLEXPC
   overflow: hidden;
 
   transition: 0.3s;
-  width: 100%;
   flex-shrink: 0;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 /* glow azul */
@@ -185,7 +192,8 @@ PROMO CARDS PRO — DARLEXPC
 
 .promos-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 🔥 SIEMPRE 3 COLUMNAS */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
   gap: 20px;
 }
 
@@ -309,12 +317,10 @@ PROMO CARDS PRO — DARLEXPC
 }
 
 /* cada card tamaño fijo */
-.promos-track .promo-card-pro {
-  min-width: 280px;
-  max-width: 300px;
-  flex-shrink: 0;
+.promos-grid .promo-card-pro {
+  min-width: auto;
+  flex-shrink: 1;
 }
-
 /* botones */
 .promo-btn.prev,
 .promo-btn.next {
