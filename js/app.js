@@ -234,33 +234,56 @@ function renderPromos(lista) {
   const promos = getPromosAutomaticas(lista);
 
   promosContainer.innerHTML = promos
-    .map(
-      (p) => `
-    <div class="promo-card">
+  .map(
+    (p) => `
+  <div class="promo-card-pro">
 
-      <div class="promo-img">
-        <img src="${p.IMAGEN}" alt="${p.NOMBRE}">
-      </div>
-
-      <div class="promo-body">
-        <h3>${p.NOMBRE}</h3>
-
-        <p class="promo-specs">
-          ${p.PROCESADOR || ""} · ${p.RAM || ""} · ${p.ROM || ""}
-        </p>
-
-        <div class="promo-price">
-          <span class="old">$${p.PRECIO_ORIGINAL}</span>
-          <span class="new">$${p.PRECIO_PROMO}</span>
-        </div>
-
-        <a href="producto.html?id=${p.SN}" class="btn-ver">
-          Ver producto
-        </a>
-      </div>
-
+    <div class="promo-brand-bar">
+      <span class="promo-logo">${p.MARCA || "Darlex"}</span>
+      <span class="promo-badge">Promo</span>
     </div>
-  `,
-    )
-    .join("");
+
+    <div class="promo-img-zone">
+      <img src="${p.IMAGEN}" alt="${p.NOMBRE}">
+    </div>
+
+    <h3 class="promo-title">${p.NOMBRE}</h3>
+
+    <div class="promo-specs">
+      <div class="promo-spec">
+        <div class="promo-spec-label">CPU</div>
+        <div class="promo-spec-value">${p.PROCESADOR || "-"}</div>
+      </div>
+
+      <div class="promo-spec">
+        <div class="promo-spec-label">RAM</div>
+        <div class="promo-spec-value">${p.RAM || "-"}</div>
+      </div>
+
+      <div class="promo-spec">
+        <div class="promo-spec-label">SSD</div>
+        <div class="promo-spec-value">${p.ROM || "-"}</div>
+      </div>
+
+      <div class="promo-spec">
+        <div class="promo-spec-label">Stock</div>
+        <div class="promo-spec-value">${p.STOCK}</div>
+      </div>
+    </div>
+
+    <div class="promo-price-box">
+      <div>
+        <div class="promo-old">$${p.PRECIO_ORIGINAL}</div>
+        <div class="promo-price">$${p.PRECIO_PROMO}</div>
+      </div>
+    </div>
+
+    <a href="producto.html?id=${p.SN}" class="promo-btn">
+      Ver producto
+    </a>
+
+  </div>
+`
+  )
+  .join("");
 }
