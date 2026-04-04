@@ -17,7 +17,7 @@ PROMO CARDS PRO — DARLEXPC
   overflow: hidden;
 
   transition: 0.3s;
-  min-width: 280px; /* 🔥 CLAVE */
+  width: 100%;
   flex-shrink: 0;
 }
 
@@ -183,14 +183,10 @@ PROMO CARDS PRO — DARLEXPC
 
 /* ================= GRID ================= */
 
-#promosGrid {
-  display: flex;
+.promos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-
-  overflow: hidden; /* 🔥 CLAVE */
-  scroll-behavior: smooth;
-
-  transition: transform 0.5s ease;
 }
 
 /* ================= CARD ================= */
