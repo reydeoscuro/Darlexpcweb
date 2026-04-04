@@ -23,6 +23,7 @@ async function cargarProductos() {
 
       renderProductos(PRODUCTOS_DB);
       renderPromos(PRODUCTOS_DB); // 🔥 AQUI
+      renderUltimosProductos(PRODUCTOS_DB); 
       activarFiltroCategorias();
       // esperar a que el DOM pinte
       setTimeout(() => {
@@ -133,6 +134,46 @@ function renderProductos(lista) {
   }
 
   renderBatch();
+}
+/* ==================================================
+   ========== ÚLTIMOS PRODUCTOS (HOME) ==============
+================================================== */
+
+function renderUltimosProductos(lista) {
+  const contenedorUltimos = document.getElementById("destacadosGrid");
+  if (!contenedorUltimos) return;
+
+  // 🔥 últimos agregados (invertimos lista)
+  const ultimos = [...lista].reverse().slice(0, 24);
+
+  contenedorUltimos.innerHTML = ultimos
+    .map(
+      (p) => `
+      <div class="card producto-card" data-cat="${p.CATEGORIA}">
+
+        <a href="producto.html?id=${p.SN}">
+          <div class="img-box">
+            <img src="${p.IMAGEN}" alt="${p.NOMBRE}">
+          </div>
+        </a>
+
+        <h3 class="titulo">${p.NOMBRE}</h3>
+
+        <div class="card-info">
+          <span class="precio">$${p.PRECIO}</span>
+          <span class="stock">Stock: ${p.STOCK}</span>
+        </div>
+
+        <button class="btn-add" data-id="${p.SN}">
+          Agregar al carrito
+        </button>
+
+      </div>
+    `,
+    )
+    .join("");
+
+  activarBotonesCarrito();
 }
 
 /* ==================================================
