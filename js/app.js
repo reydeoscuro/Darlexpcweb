@@ -4,7 +4,7 @@ window.PRODUCTOS_DB = [];
 console.log("APP.JS V3 CARGADO");
 
 // 🔥 IMPORTANTE: ahora usamos módulo externo
-import { obtenerProductos } from "./api/productos.js";
+import { obtenerProductos } from "./core/apiProductos.js";
 
 const contenedor = document.getElementById("productos") || null;
 
