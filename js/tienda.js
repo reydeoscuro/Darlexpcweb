@@ -31,14 +31,14 @@ initTienda();
 
 function mostrarMensajeError() {
   if (!contenedor) return;
-
+  // 🔥 CLAVE: si ya hay productos renderizados, NO mostrar error
+  if (contenedor.children.length > 0) return;
   contenedor.innerHTML = `
     <div style="text-align:center; padding:20px;">
       Estamos actualizando productos. Intenta en unos minutos.
     </div>
   `;
 }
-
 /* ==================================================
    ================== RENDER ========================
 ================================================== */
