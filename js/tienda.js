@@ -1,61 +1,37 @@
-window.PRODUCTOS_DB = [];
-console.log("APP.JS V2 CARGADO");
+import { obtenerProductos } from "./core/apiProductos.js";
 
-const URL = "https://darlex-api.david-villegas6991.workers.dev/";
+console.log("TIENDA.JS V3 CARGADO");
+
 const contenedor = document.getElementById("productos");
 
+let PRODUCTOS = [];
+
 /* ==================================================
-   ================== FETCH PRODUCTOS ===============
+   ================== INIT ==========================
 ================================================== */
 
-const CACHE_KEY_PRODUCTOS = "cache_productos";
-const CACHE_TIME = 5 * 60 * 1000; // 5 minutos
-
-async function cargarProductos() {
-  const cache = localStorage.getItem(CACHE_KEY_PRODUCTOS);
-
-  if (cache) {
-    const parsed = JSON.parse(cache);
-
-    if (Date.now() - parsed.timestamp < CACHE_TIME) {
-      renderProductos(parsed.data);
-      activarFiltroCategorias();
-      return;
-    }
-  }
-
+async function initTienda() {
   try {
-    const response = await fetch(URL);
-    const data = await response.json();
+    PRODUCTOS = await obtenerProductos();
 
-    if (!Array.isArray(data)) {
-      console.error("La API no devolvió un array:", data);
-      mostrarMensajeError();
-      return;
-    }
-
-    const productosActivos = data.filter(
-      (p) => p.ACTIVO && p.ACTIVO.trim().toUpperCase() === "SI",
-    );
-
-    localStorage.setItem(
-      CACHE_KEY_PRODUCTOS,
-      JSON.stringify({
-        timestamp: Date.now(),
-        data: productosActivos,
-      }),
-    );
-
-    window.PRODUCTOS_DB = productosActivos;
-    renderProductos(window.PRODUCTOS_DB);
+    renderProductos(PRODUCTOS);
     activarFiltroCategorias();
+    activarBuscador();
   } catch (error) {
-    console.error("ERROR FETCH:", error);
+    console.error("ERROR INIT:", error);
     mostrarMensajeError();
   }
 }
 
+initTienda();
+
+/* ==================================================
+   ================== ERRORES =======================
+================================================== */
+
 function mostrarMensajeError() {
+  if (!contenedor) return;
+
   contenedor.innerHTML = `
     <div style="text-align:center; padding:20px;">
       Estamos actualizando productos. Intenta en unos minutos.
@@ -63,13 +39,13 @@ function mostrarMensajeError() {
   `;
 }
 
-cargarProductos();
-
 /* ==================================================
-   ================== RENDER PRODUCTOS ==============
+   ================== RENDER ========================
 ================================================== */
 
 function renderProductos(lista) {
+  if (!contenedor) return;
+
   contenedor.innerHTML = "";
 
   const BATCH_SIZE = 12;
@@ -77,7 +53,6 @@ function renderProductos(lista) {
 
   function renderBatch() {
     const fragment = document.createDocumentFragment();
-
     const slice = lista.slice(index, index + BATCH_SIZE);
 
     slice.forEach((p) => {
@@ -117,7 +92,7 @@ function renderProductos(lista) {
     index += BATCH_SIZE;
 
     if (index < lista.length) {
-      setTimeout(renderBatch, 50); // render progresivo suave
+      setTimeout(renderBatch, 50);
     } else {
       activarBotonesCarrito();
     }
@@ -150,7 +125,7 @@ function activarBotonesCarrito() {
 }
 
 /* ==================================================
-   ================== FILTRO CATEGORÍAS ============
+   ================== FILTROS =======================
 ================================================== */
 
 function activarFiltroCategorias() {
@@ -159,21 +134,21 @@ function activarFiltroCategorias() {
   botones.forEach((btn) => {
     btn.addEventListener("click", () => {
       const categoria = btn.dataset.cat;
-      const cards = document.querySelectorAll(".producto-card");
 
-      cards.forEach((card) => {
-        if (categoria === "todos") {
-          card.style.display = "flex";
-        } else {
-          card.style.display = card.dataset.cat === categoria ? "flex" : "none";
-        }
-      });
+      if (categoria === "todos") {
+        renderProductos(PRODUCTOS);
+        return;
+      }
+
+      const filtrados = PRODUCTOS.filter((p) => p.CATEGORIA === categoria);
+
+      renderProductos(filtrados);
     });
   });
 }
 
 /* ==================================================
-   ================== INICIALIZAR ===================
+   ================== INIT UI =======================
 ================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {

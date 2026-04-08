@@ -2,7 +2,6 @@ console.log("nav.js cargado");
 
 /* ==================================================
    ================== FILTRO CATEGORÍAS =============
-   👉 AHORA USA DATA GLOBAL (NO DOM)
 ================================================== */
 
 (function () {
@@ -45,7 +44,6 @@ console.log("nav.js cargado");
 
 /* ==================================================
    ================== BUSCADOR NAV ==================
-   👉 AHORA USA DATA REAL (NO DOM)
 ================================================== */
 
 const searchToggle = document.getElementById("searchToggle");
@@ -59,8 +57,8 @@ if (searchToggle && searchInput && navSearch) {
     searchInput.focus();
   });
 
-  // Búsqueda REAL sobre DB
-  searchInput.addEventListener("keyup", () => {
+  // 🔥 FIX REAL → cambiar keyup por input
+  searchInput.addEventListener("input", () => {
     const texto = searchInput.value.toLowerCase().trim();
 
     if (!window.PRODUCTOS_DB || window.PRODUCTOS_DB.length === 0) {
@@ -68,7 +66,6 @@ if (searchToggle && searchInput && navSearch) {
       return;
     }
 
-    // Reset
     if (texto === "") {
       renderProductos(window.PRODUCTOS_DB);
       return;

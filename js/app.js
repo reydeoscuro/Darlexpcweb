@@ -1,64 +1,44 @@
 let promoInterval = null;
 window.PRODUCTOS_DB = [];
-console.log("APP.JS V2 CARGADO");
 
-const URL = "https://darlex-api.david-villegas6991.workers.dev/";
+console.log("APP.JS V3 CARGADO");
+
+// 🔥 IMPORTANTE: ahora usamos módulo externo
+import { obtenerProductos } from "./api/productos.js";
+
 const contenedor = document.getElementById("productos") || null;
 
 /* ==================================================
    ================== FETCH PRODUCTOS ===============
 ================================================== */
 
-const CACHE_KEY_PRODUCTOS = "cache_productos";
-const CACHE_TIME = 5 * 60 * 1000; // 5 minutos
-
 async function cargarProductos() {
-  const cache = localStorage.getItem(CACHE_KEY_PRODUCTOS);
-
-  if (cache) {
-    const parsed = JSON.parse(cache);
-
-    if (Date.now() - parsed.timestamp < CACHE_TIME) {
-      PRODUCTOS_DB = parsed.data;
-
-      renderProductos(PRODUCTOS_DB);
-      renderPromos(PRODUCTOS_DB); // 🔥 AQUI
-      renderUltimosProductos(PRODUCTOS_DB);
-      activarFiltroCategorias();
-      // esperar a que el DOM pinte
-      setTimeout(() => {
-        iniciarSliderPromos();
-      }, 100);
-      return;
-    }
-  }
-
   try {
-    const response = await fetch(URL);
-    const data = await response.json();
+    const productos = await obtenerProductos();
 
-    if (!Array.isArray(data)) {
-      console.error("La API no devolvió un array:", data);
+    if (!Array.isArray(productos)) {
+      console.error("API no devolvió array:", productos);
       mostrarMensajeError();
       return;
     }
 
-    const productosActivos = data.filter(
-      (p) => p.ACTIVO && p.ACTIVO.trim().toUpperCase() === "SI",
-    );
+    PRODUCTOS_DB = productos;
 
-    localStorage.setItem(
-      CACHE_KEY_PRODUCTOS,
-      JSON.stringify({
-        timestamp: Date.now(),
-        data: productosActivos,
-      }),
-    );
+    // 👉 SOLO si existe contenedor (index puede no tenerlo)
+    if (contenedor) {
+      renderProductos(PRODUCTOS_DB);
+    }
 
-    PRODUCTOS_DB = productosActivos;
-    renderProductos(PRODUCTOS_DB);
-    renderPromos(PRODUCTOS_DB); // 🔥 AQUI
-    activarFiltroCategorias();
+    // 👉 bloques independientes
+    renderPromos(PRODUCTOS_DB);
+    renderUltimosProductos(PRODUCTOS_DB);
+
+    // 👉 protección slider
+    setTimeout(() => {
+      if (typeof iniciarSliderPromos === "function") {
+        iniciarSliderPromos();
+      }
+    }, 100);
   } catch (error) {
     console.error("ERROR FETCH:", error);
     mostrarMensajeError();
@@ -66,6 +46,8 @@ async function cargarProductos() {
 }
 
 function mostrarMensajeError() {
+  if (!contenedor) return;
+
   contenedor.innerHTML = `
     <div style="text-align:center; padding:20px;">
       Estamos actualizando productos. Intenta en unos minutos.
@@ -78,8 +60,10 @@ cargarProductos();
 /* ==================================================
    ================== RENDER PRODUCTOS ==============
 ================================================== */
+
 function renderProductos(lista) {
   if (!contenedor) return;
+
   contenedor.innerHTML = "";
 
   const BATCH_SIZE = 12;
@@ -127,7 +111,7 @@ function renderProductos(lista) {
     index += BATCH_SIZE;
 
     if (index < lista.length) {
-      setTimeout(renderBatch, 50); // render progresivo suave
+      setTimeout(renderBatch, 50);
     } else {
       activarBotonesCarrito();
     }
@@ -135,6 +119,7 @@ function renderProductos(lista) {
 
   renderBatch();
 }
+
 /* ==================================================
    ========== ÚLTIMOS PRODUCTOS (HOME) ==============
 ================================================== */
@@ -143,7 +128,6 @@ function renderUltimosProductos(lista) {
   const contenedorUltimos = document.getElementById("destacadosGrid");
   if (!contenedorUltimos) return;
 
-  // 🔥 últimos agregados (invertimos lista)
   const ultimos = [...lista].reverse().slice(0, 24);
 
   contenedorUltimos.innerHTML = ultimos
@@ -200,29 +184,6 @@ function activarBotonesCarrito() {
 }
 
 /* ==================================================
-   ================== FILTRO CATEGORÍAS ============
-================================================== */
-
-function activarFiltroCategorias() {
-  const botones = document.querySelectorAll(".menu-scroll button");
-
-  botones.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const categoria = btn.dataset.cat;
-      const cards = document.querySelectorAll(".producto-card");
-
-      cards.forEach((card) => {
-        if (categoria === "todos") {
-          card.style.display = "flex";
-        } else {
-          card.style.display = card.dataset.cat === categoria ? "flex" : "none";
-        }
-      });
-    });
-  });
-}
-
-/* ==================================================
    ================== INICIALIZAR ===================
 ================================================== */
 
@@ -230,25 +191,21 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarContador();
 });
 
-// ================= PROMOCIONES (COMPATIBLE CON TU JSON) =================
+// ================= PROMOCIONES =================
 
 const promosContainer = document.getElementById("promosGrid");
 
-// ================= MOTOR DE PROMOCIONES AUTO =================
+/* ==================================================
+   ================= MOTOR PROMOS ===================
+================================================== */
 
 function getPromosAutomaticas(lista) {
   const hoy = new Date();
-
-  // 👉 cambia cada semana
   const semana = Math.floor(hoy.getTime() / (1000 * 60 * 60 * 24 * 7));
 
-  // 👉 filtramos productos válidos
   const validos = lista.filter((p) => p.ACTIVO === "SI" && Number(p.STOCK) > 0);
 
-  // 👉 pseudo-random estable por semana
   const seleccion = validos.filter((_, i) => (i + semana) % 3 === 0);
-
-  // 👉 máximo 6 promos
   const promos = seleccion.slice(0, 6);
 
   return promos.map((p) => {
@@ -256,14 +213,14 @@ function getPromosAutomaticas(lista) {
     let descuento = 0;
 
     if (precio > 500) {
-      descuento = 40 + (semana % 10); // 40–49
+      descuento = 40 + (semana % 10);
     } else if (precio > 100) {
-      descuento = 10 + (semana % 15); // 10–24
+      descuento = 10 + (semana % 15);
     } else if (precio > 0) {
-      descuento = 1 + (semana % 2) * 1.5; // 1–2.5
+      descuento = 1 + (semana % 2) * 1.5;
     }
 
-    const precioFinal = Math.max(precio - descuento, precio * 0.85); // no bajar más de 15%
+    const precioFinal = Math.max(precio - descuento, precio * 0.85);
 
     return {
       ...p,
@@ -273,6 +230,7 @@ function getPromosAutomaticas(lista) {
     };
   });
 }
+
 function renderPromos(lista) {
   if (!promosContainer) return;
 
