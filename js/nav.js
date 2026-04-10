@@ -5,7 +5,8 @@ console.log("nav.js cargado");
 ================================================== */
 
 (function () {
-  const menu = document.querySelector(".menu");
+  const menus = document.querySelectorAll(".menu");
+  const menu = menus[1];
   if (!menu) {
     console.warn("nav.js: no existe .menu en esta página");
     return;
