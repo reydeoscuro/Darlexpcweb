@@ -16,7 +16,6 @@ async function initTienda() {
 
     renderProductos(PRODUCTOS);
     activarFiltroCategorias();
-    activarBuscador();
   } catch (error) {
     console.error("ERROR INIT:", error);
     mostrarMensajeError();
