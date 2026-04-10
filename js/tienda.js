@@ -13,7 +13,7 @@ let PRODUCTOS = [];
 async function initTienda() {
   try {
     PRODUCTOS = await obtenerProductos();
-
+    window.PRODUCTOS_DB = PRODUCTOS;
     renderProductos(PRODUCTOS);
     activarFiltroCategorias();
   } catch (error) {
