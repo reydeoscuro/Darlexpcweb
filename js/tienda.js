@@ -13,7 +13,17 @@ let PRODUCTOS = [];
 async function initTienda() {
   try {
     PRODUCTOS = await obtenerProductos();
-    renderProductos(PRODUCTOS);
+    // 🔥 detectar categoría desde URL
+    const params = new URLSearchParams(window.location.search);
+    const categoriaURL = params.get("cat");
+
+    if (categoriaURL) {
+      const filtrados = PRODUCTOS.filter((p) => p.CATEGORIA === categoriaURL);
+
+      renderProductos(filtrados);
+    } else {
+      renderProductos(PRODUCTOS);
+    }
   } catch (error) {
     console.error("ERROR INIT:", error);
     mostrarMensajeError();

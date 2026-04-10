@@ -120,7 +120,7 @@ function renderProductos(lista) {
   renderBatch();
 }
 /* ==================================================
-   ====== CATEGORÍAS HOME (EVENT BRIDGE) ============
+   ====== CATEGORÍAS HOME → REDIRECCIÓN =============
 ================================================== */
 
 const botonesHome = document.querySelectorAll(".categorias-principales button");
@@ -129,11 +129,7 @@ botonesHome.forEach((btn) => {
   btn.addEventListener("click", () => {
     const categoria = btn.dataset.cat;
 
-    window.dispatchEvent(
-      new CustomEvent("filtrarCategoria", {
-        detail: { categoria },
-      }),
-    );
+    window.location.href = `tienda.html?cat=${encodeURIComponent(categoria)}`;
   });
 });
 
