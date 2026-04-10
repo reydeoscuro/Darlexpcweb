@@ -13,9 +13,7 @@ let PRODUCTOS = [];
 async function initTienda() {
   try {
     PRODUCTOS = await obtenerProductos();
-    window.PRODUCTOS_DB = PRODUCTOS;
     renderProductos(PRODUCTOS);
-    activarFiltroCategorias();
   } catch (error) {
     console.error("ERROR INIT:", error);
     mostrarMensajeError();
@@ -124,27 +122,45 @@ function activarBotonesCarrito() {
 }
 
 /* ==================================================
-   ================== FILTROS =======================
+   ================== EVENTOS NAV ===================
 ================================================== */
 
-function activarFiltroCategorias() {
-  const botones = document.querySelectorAll(".menu-scroll button");
+// 🔥 FILTRO POR CATEGORÍA
+window.addEventListener("filtrarCategoria", (e) => {
+  const categoria = e.detail.categoria;
 
-  botones.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const categoria = btn.dataset.cat;
+  if (categoria === "todos") {
+    renderProductos(PRODUCTOS);
+    return;
+  }
 
-      if (categoria === "todos") {
-        renderProductos(PRODUCTOS);
-        return;
-      }
+  const filtrados = PRODUCTOS.filter((p) => p.CATEGORIA === categoria);
+  renderProductos(filtrados);
+});
 
-      const filtrados = PRODUCTOS.filter((p) => p.CATEGORIA === categoria);
+// 🔥 BUSCADOR
+window.addEventListener("buscarProducto", (e) => {
+  const texto = e.detail.texto;
 
-      renderProductos(filtrados);
-    });
+  if (texto === "") {
+    renderProductos(PRODUCTOS);
+    return;
+  }
+
+  const filtrados = PRODUCTOS.filter((p) => {
+    const nombre = (p.NOMBRE || "").toLowerCase();
+    const categoria = (p.CATEGORIA || "").toLowerCase();
+    const procesador = (p.PROCESADOR || "").toLowerCase();
+
+    return (
+      nombre.includes(texto) ||
+      categoria.includes(texto) ||
+      procesador.includes(texto)
+    );
   });
-}
+
+  renderProductos(filtrados);
+});
 
 /* ==================================================
    ================== INIT UI =======================
