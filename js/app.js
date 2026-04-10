@@ -123,7 +123,7 @@ function renderProductos(lista) {
    ====== CATEGORÍAS HOME → REDIRECCIÓN =============
 ================================================== */
 
-const botonesHome = document.querySelectorAll(".categorias-principales button");
+const botonesHome = document.querySelectorAll(".categorias-grid button");
 
 botonesHome.forEach((btn) => {
   btn.addEventListener("click", () => {
