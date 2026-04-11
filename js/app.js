@@ -141,7 +141,10 @@ function renderUltimosProductos(lista) {
   const contenedorUltimos = document.getElementById("destacadosGrid");
   if (!contenedorUltimos) return;
 
-  const ultimos = [...lista].reverse().slice(0, 24);
+  const ultimos = [...lista]
+    .filter((p) => p.ACTIVO && p.ACTIVO.trim().toUpperCase() === "SI")
+    .reverse()
+    .slice(0, 24);
 
   contenedorUltimos.innerHTML = ultimos
     .map(
