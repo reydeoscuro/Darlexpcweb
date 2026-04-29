@@ -21,19 +21,23 @@ export async function obtenerProductos() {
       throw new Error("API no válida");
     }
 
-    const productosActivos = data.filter(
-      (p) => p.ACTIVO && p.ACTIVO.trim().toUpperCase() === "SI"
-    );
+    // 🔥 FILTRO GLOBAL CORRECTO (ACTIVO + STOCK + LIMPIEZA)
+    const productosValidos = data.filter((p) => {
+      const activo = (p.ACTIVO || "").toString().trim().toUpperCase();
+      const stock = Number(p.STOCK) || 0;
+
+      return activo === "SI" && stock > 0;
+    });
 
     localStorage.setItem(
       CACHE_KEY,
       JSON.stringify({
         timestamp: Date.now(),
-        data: productosActivos,
+        data: productosValidos,
       })
     );
 
-    return productosActivos;
+    return productosValidos;
   } catch (error) {
     console.error("ERROR API:", error);
     throw error;

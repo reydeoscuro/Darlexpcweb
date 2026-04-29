@@ -12,13 +12,27 @@ let PRODUCTOS = [];
 
 async function initTienda() {
   try {
-    PRODUCTOS = await obtenerProductos();
+    const data = await obtenerProductos();
+
+    // 🔥 FILTRO GLOBAL (FUENTE DE VERDAD)
+    PRODUCTOS = data.filter((p) => {
+      const activo = (p.ACTIVO || "").toString().trim().toUpperCase();
+      const stock = Number(p.STOCK) || 0;
+
+      return activo === "SI" && stock > 0;
+    });
+
     // 🔥 detectar categoría desde URL
     const params = new URLSearchParams(window.location.search);
     const categoriaURL = params.get("cat");
 
     if (categoriaURL) {
-      const filtrados = PRODUCTOS.filter((p) => p.CATEGORIA === categoriaURL);
+      const categoriaNormalizada = categoriaURL.trim().toLowerCase();
+
+      const filtrados = PRODUCTOS.filter((p) => {
+        const cat = (p.CATEGORIA || "").toString().trim().toLowerCase();
+        return cat === categoriaNormalizada;
+      });
 
       renderProductos(filtrados);
     } else {
@@ -31,7 +45,6 @@ async function initTienda() {
 }
 
 initTienda();
-
 /* ==================================================
    ================== ERRORES =======================
 ================================================== */
