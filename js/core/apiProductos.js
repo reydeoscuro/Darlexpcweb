@@ -18,7 +18,7 @@ export async function obtenerProductos() {
     const data = await response.json();
 
     if (!Array.isArray(data)) {
-      throw new Error("API no válida");
+      throw new TypeError("API no válida");
     }
 
     // 🔥 FILTRO GLOBAL CORRECTO (ACTIVO + STOCK + LIMPIEZA)
