@@ -1,5 +1,7 @@
-const URL = "https://darlex-api.david-villegas6991.workers.dev/";
-const CACHE_KEY = "cache_productos";
+import CONFIG from "./config.js";
+
+const URL = CONFIG.api;
+const CACHE_KEY = CONFIG.cacheKey;
 const CACHE_TIME = 5 * 60 * 1000;
 
 export async function obtenerProductos() {
@@ -21,7 +23,7 @@ export async function obtenerProductos() {
       throw new TypeError("API no válida");
     }
 
-    // 🔥 FILTRO GLOBAL CORRECTO (ACTIVO + STOCK + LIMPIEZA)
+    // Filtro global (productos activos y con stock)
     const productosValidos = data.filter((p) => {
       const activo = (p.ACTIVO || "").toString().trim().toUpperCase();
       const stock = Number(p.STOCK) || 0;
@@ -39,7 +41,10 @@ export async function obtenerProductos() {
 
     return productosValidos;
   } catch (error) {
-    console.error("ERROR API:", error);
+    console.error(
+      `[${CONFIG.sucursal.toUpperCase()}] ERROR API:`,
+      error
+    );
     throw error;
   }
 }
