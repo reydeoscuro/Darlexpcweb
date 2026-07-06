@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DarleXPC | Detalle del producto</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="./css/product.css" />
+    <link rel="stylesheet" href="css/cart.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="top">
+      <div class="logo">
+        <a href="index.html">
+          <h1>DarleXPC</h1>
+          <span>Tienda en línea de tecnología</span>
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <div class="cart-icon" id="btnAbrirCarrito">
+          🛒 <span class="cart-count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- NAV -->
+    <nav class="menu">
+      <a href="tienda.html" class="btn-volver">⬅ Volver al catálogo</a>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <main class="contenedor">
+      <div id="detalle">
+        <p>Cargando producto...</p>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">© 2026 DarleXPC · Tecnología con propósito</footer>
+
+    <!-- JS -->
+    <script src="js/core/cartCore.js"></script>
+    <script src="js/core/cartUI.js"></script>
+    <script src="js/producto.js"></script>
+
+    <!-- ================= CARRITO ================= -->
+
+    <div id="cartOverlay" class="cart-overlay"></div>
+
+    <aside id="cartSidebar" class="cart-sidebar">
+      <div class="cart-header">
+        <h2>Tu carrito</h2>
+        <button id="cerrarCarrito">✕</button>
+      </div>
+
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="cart-footer">
+        <p>Total: $<span id="cartTotal">0</span></p>
+
+        <button id="vaciarCarritoBtn" class="cart-clear">Vaciar carrito</button>
+
+        <button id="enviarPedidoBtn" class="btn-whatsapp">
+          Comprar por WhatsApp
+        </button>
+      </div>
+    </aside>
+  </body>
+</html>

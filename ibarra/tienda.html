@@ -2,12 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>DarleXPC</title>
+    <title>DarleXPC | Tienda</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/promos.css" />
     <link rel="stylesheet" href="./css/slider.css" />
     <link rel="stylesheet" href="./css/cart.css" />
   </head>
@@ -41,62 +40,35 @@
       </div>
     </header>
     <!-- =============== FIN HEADER ================= -->
-
-    <!-- ================= NAV STORE ================= -->
-    <nav class="nav-store">
-      <a href="tienda.html">Tienda</a>
-      <a href="categorias.html">Categorías</a>
-      <a href="marcas.html">Marcas</a>
-      <a href="contacto.html">Contacto</a>
-      <a href="cuenta.html">Mi cuenta</a>
+    <!-- NAV VOLVER -->
+    <nav class="menu">
+      <a href="index.html" class="btn-volver">⬅ Volver al inicio</a>
     </nav>
-    <!-- =============== FIN NAV STORE ================= -->
 
-    <!-- ================= SLIDER PRINCIPAL ================= -->
-    <section class="slider">
-      <div class="slider-track" id="slider-track">
-        <!-- Slides se cargan por JS -->
+    <!-- ================= NAV CATALOGO ================= -->
+    <nav class="menu">
+      <div class="nav-search">
+        <button id="searchToggle" class="search-btn">🔍</button>
+        <input type="text" id="searchInput" placeholder="Buscar producto..." />
       </div>
 
-      <button id="prevSlide" class="slider-btn prev">&#10094;</button>
-      <button id="nextSlide" class="slider-btn next">&#10095;</button>
-    </section>
-    <!-- =============== FIN SLIDER ================= -->
-
-    <!-- ================= CATEGORIAS RAPIDAS ================= -->
-    <section class="categorias-home">
-      <h2>Categorías principales</h2>
-
-      <div class="categorias-grid">
-        <button data-cat="Laptops">💻 Laptops</button>
-        <button data-cat="PCs">🖥 PCs</button>
-        <button data-cat="Componentes">⚙ Componentes</button>
-        <button data-cat="Accesorios">🎮 Accesorios</button>
+      <div class="menu-scroll">
+        <button data-cat="todos">Todos</button>
+        <button data-cat="Laptops">Laptops</button>
+        <button data-cat="PCs">PCs</button>
+        <button data-cat="Componentes">Componentes</button>
+        <button data-cat="Accesorios">Accesorios</button>
         <button data-cat="Impresoras">🖨️ Impresoras</button>
-        <button data-cat="Teclado">⌨ Teclados</button>
-        <button data-cat="Cargadores">🔌 Cargadores</button>
-        <button data-cat="Monitores">🖥️ Monitores</button>
-        <button data-cat="Mouse">🖱️ Mouses</button>
       </div>
-    </section>
-    <!-- =============== FIN CATEGORIAS ================= -->
-    <!-- ================= PROMOCIONES ================= -->
-    <section class="promociones">
-      <div class="contenedor">
-        <h2>🔥 Promociones de la semana</h2>
-        <div id="promosGrid" class="promos-grid"></div>
-      </div>
-    </section>
-    <!-- =============== FIN PROMOCIONES ================= -->
-    <!-- ================= PRODUCTOS DESTACADOS ================= -->
-    <section class="destacados">
-      <h2>🔥 Últimos agregados</h2>
+    </nav>
+    <!-- =============== FIN NAV CATALOGO ================= -->
 
-      <div id="destacadosGrid" class="destacados-grid">
-        <!-- JS puede insertar productos aquí -->
-      </div>
-    </section>
-    <!-- =============== FIN DESTACADOS ================= -->
+    <!-- ================= CATALOGO ================= -->
+    <main class="contenedor">
+      <section id="productos"></section>
+    </main>
+    <!-- =============== FIN CATALOGO ================= -->
+
     <!-- ================= FOOTER ================= -->
     <footer class="footer">© 2026 DarleXPC — Tecnología confiable</footer>
     <!-- =============== FIN FOOTER ================= -->
@@ -106,8 +78,7 @@
     <script src="js/core/cartCore.js"></script>
     <script src="js/core/cartUI.js"></script>
 
-    <script type="module" src="./js/app.js"></script>
-    <script src="./js/slider.js"></script>
+    <script type="module" src="./js/tienda.js"></script>
     <script src="./js/nav.js"></script>
 
     <!-- =============== FIN SCRIPTS ================= -->
