@@ -87,5 +87,15 @@
     }
   ],
 
-  "next_objective": "Desarrollar el módulo Servicio Técnico."
+  
+  "module": {
+    "status": "Levantamiento de requerimientos completado",
+    "current_sprint": "S01"
+  },
+  "expected_result": {
+    "current_phase": "Diseño técnico del módulo"
+  }
+
+  ,"next_objective": "Desarrollar el módulo Servicio Técnico."
 }
+
