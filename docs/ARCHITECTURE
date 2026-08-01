@@ -1,0 +1,59 @@
+# Arquitectura DarlexPC
+
+## Frontend
+
+- HTML5
+- CSS3
+- JavaScript Vanilla
+
+## Backend
+
+- Cloudflare Workers
+
+## Base de datos
+
+- Google Sheets
+
+## Imágenes
+
+- Cloudinary
+
+## Hosting
+
+- GitHub Pages
+
+## Caché
+
+- LocalStorage
+
+## APIs
+
+Matriz
+
+↓
+
+Google Sheets Matriz
+
+↓
+
+Cloudflare Worker
+
+↓
+
+Página Web
+
+---
+
+Ibarra
+
+↓
+
+Google Sheets Ibarra
+
+↓
+
+Cloudflare Worker Ibarra
+
+↓
+
+Página Web

@@ -1,0 +1,91 @@
+{
+  "project": {
+    "name": "DarlexPC Web",
+    "repository": "Darlexpcweb",
+    "version": "2.4.0",
+    "status": "En desarrollo",
+    "last_update": "2026-07-31"
+  },
+
+  "current_sprint": {
+    "id": "DOC-02",
+    "name": "Inicialización del Sistema de Documentación Continua",
+    "status": "En progreso"
+  },
+
+  "modules": {
+    "landing": {
+      "status": "Completado",
+      "progress": 100
+    },
+
+    "store": {
+      "status": "Completado",
+      "progress": 100
+    },
+
+    "shopping_cart": {
+      "status": "Completado",
+      "progress": 100
+    },
+
+    "api_cloudflare": {
+      "status": "Completado",
+      "progress": 100
+    },
+
+    "multi_branch": {
+      "status": "En desarrollo",
+      "progress": 95
+    },
+
+    "ibarra_branch": {
+      "status": "Operativa",
+      "progress": 100
+    },
+
+    "technical_service": {
+      "status": "Pendiente",
+      "progress": 0
+    },
+
+    "inventory": {
+      "status": "Pendiente",
+      "progress": 0
+    },
+
+    "dashboard": {
+      "status": "Pendiente",
+      "progress": 0
+    },
+
+    "billing": {
+      "status": "Pendiente",
+      "progress": 0
+    }
+  },
+
+  "architecture": {
+    "frontend": "HTML + CSS + JavaScript",
+    "backend": "Cloudflare Workers",
+    "database": "Google Sheets",
+    "images": "Cloudinary",
+    "hosting": "GitHub Pages",
+    "cache": "LocalStorage"
+  },
+
+  "active_branches": [
+    {
+      "name": "Matriz",
+      "url": "https://darlexpc.com",
+      "api": "darlex-api"
+    },
+    {
+      "name": "Ibarra",
+      "url": "https://darlexpc.com/ibarra",
+      "api": "darlex-api-ibarra"
+    }
+  ],
+
+  "next_objective": "Desarrollar el módulo Servicio Técnico."
+}
